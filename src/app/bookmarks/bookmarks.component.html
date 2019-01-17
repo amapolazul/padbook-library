@@ -1,0 +1,32 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-grid>
+            <ion-row>
+                <ion-col>
+                    <ion-title padding-top="16px">
+                        Marcadores
+                    </ion-title>
+                </ion-col>
+                <ion-col>
+                    <ion-button [size]="small" routerLink="/home" float-right>
+                        <ion-icon name="home"></ion-icon>
+                    </ion-button>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <ion-card *ngFor="let bookmark of bookMarks; let i = index">
+        <ion-card-header>
+            <ion-card-title>Marcador #{{i}}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+            <p (click)="goToPage(bookmark.pageIndex)">Ir a Pagina {{bookmark.pageIndex}}</p>
+        </ion-card-content>
+    </ion-card>
+
+</ion-content>

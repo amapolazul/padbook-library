@@ -1,12 +1,47 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-grid>
+            <ion-row>
+                <ion-col>
+                    <ion-title padding-top="16px">
+                        Primero mi primaria
+                    </ion-title>
+                </ion-col>
+                <ion-col>
+                    <ion-button [size]="small" routerLink="/bookmarks" float-right>
+                        <ion-icon name="bookmark"></ion-icon>
+                    </ion-button>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>If you get lost, the <a target="_blank" rel="noopener" href="https://beta.ionicframework.com/docs/">docs</a> will be your guide.</p>
+<ion-content>
+    <div id="area"></div>
 </ion-content>
+
+<ion-footer align-items-center>
+    <ion-grid>
+        <ion-row>
+            <ion-col float-left>
+                <a (click)="prevPage()" float-left>
+                    <ion-icon name="rewind"></ion-icon>
+                </a>
+            </ion-col>
+            <ion-col style="text-align: center">
+                <a (click)="bookMarkPage()" >
+                    <ion-icon name="bookmark"></ion-icon>
+                </a>
+            </ion-col>
+            <ion-col float-right>
+                <a (click)="nextPage()" float-right>
+                    <ion-icon name="fastforward"></ion-icon>
+                </a>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-footer>
