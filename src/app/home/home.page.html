@@ -1,4 +1,4 @@
-<ion-header>
+<ion-header *ngIf="showElement">
     <ion-toolbar>
         <ion-buttons slot="start">
             <ion-menu-button></ion-menu-button>
@@ -21,10 +21,11 @@
 </ion-header>
 
 <ion-content>
+    <div id="touchlayer" style="width: 90%; height: 90%; position: absolute; z-index: 1" (click)="showHeader()"></div>
     <div id="area"></div>
 </ion-content>
 
-<ion-footer align-items-center>
+<ion-footer align-items-center *ngIf="showElement">
     <ion-grid>
         <ion-row>
             <ion-col float-left>

@@ -2,5 +2,13 @@ app-home {
   #area {
     width: 90%;
     height: 90%;
+    z-index: 0;
+  }
+
+  #touchlayer {
+    width: 90%;
+    height: 90%;
+    z-index: 1;
+    position: absolute;
   }
 }

@@ -7,6 +7,7 @@ import {BookMark} from '../bookmarks/bookmark';
 import Navigation from 'epubjs/types/navigation';
 import {Router} from '@angular/router';
 import {ToastController} from '@ionic/angular';
+import {timeoutWith} from 'rxjs/operators';
 
 
 @Component({
@@ -19,6 +20,8 @@ export class HomePage implements OnInit {
     book: Book;
     rendition: Rendition;
     navigation: Navigation;
+    showElement: boolean;
+    timeout;
 
     constructor(private bookService: BookService,
                 private bookMarkService: BookmarksService,
@@ -29,6 +32,7 @@ export class HomePage implements OnInit {
         this.rendition = this.book.renderTo('area');
         this.bookService.setRendtion(this.rendition);
         var displayed = this.rendition.display();
+        this.showElement = false;
     }
 
     ngOnInit() {
@@ -38,15 +42,30 @@ export class HomePage implements OnInit {
 
     }
 
+    showHeader() {
+        this.showElement = true;
+        this.timeout = window.setTimeout(() => {
+            this.showElement = false;
+        }, 5000);
+
+        return this.timeout;
+    }
+
     nextPage() {
+        window.clearTimeout(this.timeout);
+        this.showHeader();
         return this.rendition.next();
     }
 
     prevPage() {
+        window.clearTimeout(this.timeout);
+        this.showHeader();
         return this.rendition.prev();
     }
 
     bookMarkPage() {
+        window.clearTimeout(this.timeout);
+        this.showHeader();
         const bookMark = new BookMark();
         bookMark.pageIndex = this.rendition.location.start.index;
         this.bookMarkService.addBookMark(bookMark);
