@@ -1,9 +1,8 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 
-import { Platform } from '@ionic/angular';
-import { SplashScreen } from '@ionic-native/splash-screen/ngx';
-import { StatusBar } from '@ionic-native/status-bar/ngx';
-import * as ePub from 'epubjs';
+import {Platform} from '@ionic/angular';
+import {SplashScreen} from '@ionic-native/splash-screen/ngx';
+import {StatusBar} from '@ionic-native/status-bar/ngx';
 import Book from 'epubjs/types/book';
 import {BookService} from './book/book.service';
 
@@ -33,6 +32,19 @@ export class AppComponent {
       });
   }
 
+  // private createDatabase(){
+  //     this.sqlite.create({
+  //         name: 'data.db',
+  //         location: 'default' // the location field is required
+  //     })
+  //         .then((db) => {
+  //             console.log(db);
+  //         })
+  //         .catch(error =>{
+  //             console.error(error);
+  //         });
+  // }
+
   goToPage(href) {
     this.bookService.goToPageHref(href);
   }
@@ -41,6 +53,7 @@ export class AppComponent {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+      // this.createDatabase();
     });
   }
 }

@@ -22,7 +22,19 @@
 
     <ion-card *ngFor="let bookmark of bookMarks; let i = index">
         <ion-card-header>
-            <ion-card-title>Marcador #{{i}}</ion-card-title>
+            <ion-grid>
+                <ion-row>
+                    <ion-col float-left>
+                        <ion-card-title>Marcador #{{i}}</ion-card-title>
+                    </ion-col>
+                    <ion-col float-right>
+                        <a (click)="deleteBookMark(i)" float-right>
+                            <ion-icon name="close"></ion-icon>
+                        </a>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+
         </ion-card-header>
         <ion-card-content>
             <p (click)="goToPage(bookmark.pageIndex)">Ir a Pagina {{bookmark.pageIndex}}</p>

@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {BookMark} from './bookmark';
+import {DatabaseService} from '../database/database.service';
 
 @Injectable({
     providedIn: 'root'
@@ -8,7 +9,7 @@ export class BookmarksService {
 
     bookMarks: Array<BookMark>;
 
-    constructor() {
+    constructor(private databaseService: DatabaseService) {
         this.bookMarks = new Array<BookMark>();
     }
 
@@ -18,5 +19,9 @@ export class BookmarksService {
 
     getBookMarks() {
         return this.bookMarks;
+    }
+
+    removeBookMark(index) {
+        this.bookMarks.splice(index, 1);
     }
 }

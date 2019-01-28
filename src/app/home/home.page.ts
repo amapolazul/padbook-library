@@ -5,9 +5,7 @@ import {BookService} from '../book/book.service';
 import {BookmarksService} from '../bookmarks/bookmarks.service';
 import {BookMark} from '../bookmarks/bookmark';
 import Navigation from 'epubjs/types/navigation';
-import {Router} from '@angular/router';
 import {ToastController} from '@ionic/angular';
-import {timeoutWith} from 'rxjs/operators';
 
 
 @Component({
@@ -25,14 +23,14 @@ export class HomePage implements OnInit {
 
     constructor(private bookService: BookService,
                 private bookMarkService: BookmarksService,
-                private router: Router,
                 public toastController: ToastController) {
 
         this.book = this.bookService.getBook();
         this.rendition = this.book.renderTo('area');
         this.bookService.setRendtion(this.rendition);
-        var displayed = this.rendition.display();
+        this.rendition.display();
         this.showElement = false;
+
     }
 
     ngOnInit() {
@@ -40,6 +38,27 @@ export class HomePage implements OnInit {
             this.navigation = this.book.navigation;
         });
 
+        this.rendition.on('displayed', (event) => {
+
+            let start = null;
+            let end = null;
+            const el = document.getElementById('touchlayer');
+
+            el.addEventListener('touchstart', event => {
+                start = event.changedTouches[0];
+            });
+            el.addEventListener('touchend', event => {
+                end = event.changedTouches[0];
+
+                let hr = (end.screenX - start.screenX) / el.getBoundingClientRect().width;
+                let vr = (end.screenY - start.screenY) / el.getBoundingClientRect().height;
+
+                if (hr > vr && hr > 0.25) return this.rendition.prev();
+                if (hr < vr && hr < -0.25) return this.rendition.next();
+                if (vr > hr && vr > 0.25) return;
+                if (vr < hr && vr < -0.25) return;
+            });
+        });
     }
 
     showHeader() {
@@ -79,5 +98,4 @@ export class HomePage implements OnInit {
         });
         toast.present();
     }
-
 }

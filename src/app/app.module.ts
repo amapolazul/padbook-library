@@ -11,6 +11,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {BookService} from './book/book.service';
 import {BookmarksService} from './bookmarks/bookmarks.service';
 import {BookmarksComponent} from './bookmarks/bookmarks.component';
+import {DatabaseService} from './database/database.service'
 
 @NgModule({
     declarations: [AppComponent, BookmarksComponent],
@@ -19,6 +20,7 @@ import {BookmarksComponent} from './bookmarks/bookmarks.component';
     providers: [
         BookService,
         BookmarksService,
+        DatabaseService,
         StatusBar,
         SplashScreen,
         {provide: RouteReuseStrategy, useClass: IonicRouteStrategy}
