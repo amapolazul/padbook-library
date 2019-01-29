@@ -87,13 +87,17 @@ export class HomePage implements OnInit {
         this.showHeader();
         const bookMark = new BookMark();
         bookMark.pageIndex = this.rendition.location.start.index;
-        this.bookMarkService.addBookMark(bookMark);
-        this.presentToast();
+        this.bookMarkService.addBookMark(bookMark).then(x => {
+            this.presentToast('Marcador guardado correctamente');
+        }).catch(err => {
+            this.presentToast(err);
+        });
+
     }
 
-    async presentToast() {
+    async presentToast(message) {
         const toast = await this.toastController.create({
-            message: 'Marcador guardado correctamente',
+            message: message,
             duration: 2000
         });
         toast.present();

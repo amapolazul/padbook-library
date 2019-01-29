@@ -4,6 +4,7 @@ import {BookMark} from './bookmark';
 import {BookService} from '../book/book.service';
 import {Router} from '@angular/router';
 import {ToastController} from '@ionic/angular';
+import {DatabaseService} from '../database/database.service';
 
 @Component({
   selector: 'app-bookmarks',
@@ -17,6 +18,7 @@ export class BookmarksComponent implements OnInit {
   constructor(private bookMarkService : BookmarksService,
               private bookService: BookService,
               private router: Router,
+              private database: DatabaseService,
               public toastController: ToastController) { }
 
   ngOnInit() {
@@ -29,13 +31,17 @@ export class BookmarksComponent implements OnInit {
   }
 
   deleteBookMark(index) {
-    this.bookMarkService.removeBookMark(index);
-    this.presentToast();
+    this.bookMarkService.removeBookMark(index).then(x => {
+        this.presentToast("Bookmark borrado correctamente");
+    }).catch(err => {
+        this.presentToast(err);
+    });
+
   }
 
-    async presentToast() {
+    async presentToast(message: string) {
         const toast = await this.toastController.create({
-            message: 'Marcador borrado correctamente',
+            message: message,
             duration: 2000
         });
         toast.present();

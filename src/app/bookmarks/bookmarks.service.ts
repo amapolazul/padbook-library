@@ -14,14 +14,16 @@ export class BookmarksService {
     }
 
     addBookMark(bookMark: BookMark) {
-        this.bookMarks.push(bookMark);
+        return this.databaseService.insertBookmark(bookMark.pageIndex);
     }
 
     getBookMarks() {
-        return this.bookMarks;
+        return this.databaseService.getBookMarkList();
     }
 
     removeBookMark(index) {
-        this.bookMarks.splice(index, 1);
+        return this.databaseService.deleteBookMark(index).then(x => {
+            this.bookMarks.splice(index, 1);
+        })
     }
 }

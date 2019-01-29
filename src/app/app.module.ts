@@ -12,6 +12,7 @@ import {BookService} from './book/book.service';
 import {BookmarksService} from './bookmarks/bookmarks.service';
 import {BookmarksComponent} from './bookmarks/bookmarks.component';
 import {DatabaseService} from './database/database.service'
+import {SQLite} from '@ionic-native/sqlite/ngx';
 
 @NgModule({
     declarations: [AppComponent, BookmarksComponent],
@@ -20,6 +21,7 @@ import {DatabaseService} from './database/database.service'
     providers: [
         BookService,
         BookmarksService,
+        SQLite,
         DatabaseService,
         StatusBar,
         SplashScreen,
