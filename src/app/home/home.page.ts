@@ -91,6 +91,7 @@ export class HomePage implements OnInit {
             this.presentToast('Marcador guardado correctamente');
         }).catch(err => {
             this.presentToast(err);
+            console.log(err);
         });
 
     }

@@ -19,7 +19,7 @@ export class DatabaseService {
             .then((db: SQLiteObject) => {
 
                 this.db = db;
-                db.executeSql('create table if not exists bookmarks(index INTEGER PRIMARY KEY)', [])
+                db.executeSql('create table if not exists bookmarks(page_index INTEGER PRIMARY KEY)', [])
                     .then(() => console.log('Executed SQL'))
                     .catch(e => console.log(e));
 
@@ -28,14 +28,16 @@ export class DatabaseService {
     }
 
     getBookMarkList() {
-        return this.db.executeSql('select * from bookmarks');
+        return this.db.executeSql('select * from bookmarks;', []);
     }
 
     deleteBookMark(index) {
-        return this.db.executeSql('delete from bookmarks where index = ?', [index]);
+        console.log(index);
+        return this.db.executeSql('delete from bookmarks where page_index = ?;', [index]);
     }
 
     insertBookmark(index) {
-        return this.db.executeSql('insert into bookmarks(index) values(?)', [index]);
+        console.log(index);
+        return this.db.executeSql('insert into bookmarks(page_index) values(?);', [index]);
     }
 }

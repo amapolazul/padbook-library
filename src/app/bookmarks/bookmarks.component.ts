@@ -13,16 +13,27 @@ import {DatabaseService} from '../database/database.service';
 })
 export class BookmarksComponent implements OnInit {
 
-  bookMarks: Array<BookMark>;
+  bookMarks: Array<BookMark> = [];
 
-  constructor(private bookMarkService : BookmarksService,
+  constructor(private bookMarkService: BookmarksService,
               private bookService: BookService,
               private router: Router,
               private database: DatabaseService,
-              public toastController: ToastController) { }
+              public toastController: ToastController) {
+
+              }
 
   ngOnInit() {
-    this.bookMarks = this.bookMarkService.getBookMarks();
+
+    this.database.getBookMarkList().then( x  => {
+
+      for (let i = 0; i < x.rows.length; i++) {
+        const item = x.rows.item(i);
+        const bookMark = new BookMark();
+        bookMark.pageIndex = item.page_index;
+        this.bookMarks.push(bookMark);
+      }
+    });
   }
 
   goToPage(index) {
@@ -33,12 +44,11 @@ export class BookmarksComponent implements OnInit {
   deleteBookMark(index) {
     this.bookMarkService.removeBookMark(index).then(x => {
         this.presentToast("Bookmark borrado correctamente");
+        this.bookMarks.splice(index, 1);
     }).catch(err => {
         this.presentToast(err);
     });
-
   }
-
     async presentToast(message: string) {
         const toast = await this.toastController.create({
             message: message,

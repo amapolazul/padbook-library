@@ -7,10 +7,8 @@ import {DatabaseService} from '../database/database.service';
 })
 export class BookmarksService {
 
-    bookMarks: Array<BookMark>;
-
     constructor(private databaseService: DatabaseService) {
-        this.bookMarks = new Array<BookMark>();
+
     }
 
     addBookMark(bookMark: BookMark) {
@@ -22,8 +20,6 @@ export class BookmarksService {
     }
 
     removeBookMark(index) {
-        return this.databaseService.deleteBookMark(index).then(x => {
-            this.bookMarks.splice(index, 1);
-        })
+        return this.databaseService.deleteBookMark(index);
     }
 }
