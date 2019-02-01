@@ -6,6 +6,7 @@ import {BookmarksService} from '../bookmarks/bookmarks.service';
 import {BookMark} from '../bookmarks/bookmark';
 import Navigation from 'epubjs/types/navigation';
 import {ToastController} from '@ionic/angular';
+import {HammerGestureConfig} from '@angular/platform-browser';
 
 
 @Component({
@@ -39,25 +40,21 @@ export class HomePage implements OnInit {
         });
 
         this.rendition.on('displayed', (event) => {
+            const hammer = new HammerGestureConfig();
+            const elemet = document.getElementById('touchlayer');
+            const t = hammer.buildHammer(elemet);
 
-            let start = null;
-            let end = null;
-            const el = document.getElementById('touchlayer');
-
-            el.addEventListener('touchstart', event => {
-                start = event.changedTouches[0];
+            t.on("swiperight", () => {
+                return this.rendition.prev();
             });
-            el.addEventListener('touchend', event => {
-                end = event.changedTouches[0];
 
-                let hr = (end.screenX - start.screenX) / el.getBoundingClientRect().width;
-                let vr = (end.screenY - start.screenY) / el.getBoundingClientRect().height;
-
-                if (hr > vr && hr > 0.25) return this.rendition.prev();
-                if (hr < vr && hr < -0.25) return this.rendition.next();
-                if (vr > hr && vr > 0.25) return;
-                if (vr < hr && vr < -0.25) return;
+            t.on("swipeleft", () => {
+                return this.rendition.next();
             });
+
+            t.on("tap", () => {
+                this.showHeader();
+            })
         });
     }
 

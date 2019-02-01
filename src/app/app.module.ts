@@ -1,4 +1,3 @@
-import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {RouteReuseStrategy} from '@angular/router';
 
@@ -14,6 +13,23 @@ import {BookmarksComponent} from './bookmarks/bookmarks.component';
 import {DatabaseService} from './database/database.service';
 import { SQLite } from '@ionic-native/sqlite/ngx';
 
+import { NgModule, ErrorHandler, Injectable } from "@angular/core";
+
+import * as Sentry from "@sentry/browser";
+
+Sentry.init({
+    dsn: "https://e186c3712c204519a78cf3793a6df065@sentry.io/1384555"
+});
+
+@Injectable()
+export class SentryErrorHandler implements ErrorHandler {
+    constructor() {}
+    handleError(error) {
+        Sentry.captureException(error.originalError || error);
+        throw error;
+    }
+}
+
 @NgModule({
     declarations: [AppComponent, BookmarksComponent],
     entryComponents: [],
@@ -25,7 +41,8 @@ import { SQLite } from '@ionic-native/sqlite/ngx';
         StatusBar,
         SplashScreen,
         SQLite,
-        {provide: RouteReuseStrategy, useClass: IonicRouteStrategy}
+        { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+        { provide: ErrorHandler, useClass: SentryErrorHandler }
     ],
     bootstrap: [AppComponent]
 })
