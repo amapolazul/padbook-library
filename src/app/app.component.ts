@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 
-import {Platform} from '@ionic/angular';
+import {MenuController, Platform} from '@ionic/angular';
 import {SplashScreen} from '@ionic-native/splash-screen/ngx';
 import {StatusBar} from '@ionic-native/status-bar/ngx';
 import Book from 'epubjs/types/book';
@@ -19,7 +19,8 @@ export class AppComponent {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private bookService: BookService
+    private bookService: BookService,
+    private menu: MenuController
   ) {
     this.initializeApp();
 
@@ -32,18 +33,9 @@ export class AppComponent {
       });
   }
 
-  // private createDatabase(){
-  //     this.sqlite.create({
-  //         name: 'data.db',
-  //         location: 'default' // the location field is required
-  //     })
-  //         .then((db) => {
-  //             console.log(db);
-  //         })
-  //         .catch(error =>{
-  //             console.error(error);
-  //         });
-  // }
+  closeMenu() {
+    this.menu.toggle()
+  }
 
   goToPage(href) {
     this.bookService.goToPageHref(href);
