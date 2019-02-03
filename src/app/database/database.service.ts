@@ -15,6 +15,7 @@ export class DatabaseService {
 
     constructor(private sqlite: SQLite) {
 
+        /*
         this.sqlite.create(this.configuration)
             .then((db: SQLiteObject) => {
 
@@ -25,6 +26,7 @@ export class DatabaseService {
 
 
             }).catch(e => console.log(e));
+        */
     }
 
     getBookMarkList() {

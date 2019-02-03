@@ -12,6 +12,7 @@ import {BookService} from './book/book.service';
 })
 export class AppComponent {
 
+  rootPage: any = 'Slide';
   public appPages = [];
   book: Book;
 
@@ -34,7 +35,7 @@ export class AppComponent {
   }
 
   closeMenu() {
-    this.menu.toggle()
+    this.menu.toggle();
   }
 
   goToPage(href) {

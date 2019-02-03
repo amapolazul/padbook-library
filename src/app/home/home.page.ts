@@ -31,7 +31,6 @@ export class HomePage implements OnInit {
         this.bookService.setRendtion(this.rendition);
         this.rendition.display();
         this.showElement = false;
-
     }
 
     ngOnInit() {
@@ -90,7 +89,6 @@ export class HomePage implements OnInit {
             this.presentToast(err);
             console.log(err);
         });
-
     }
 
     async presentToast(message) {

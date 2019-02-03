@@ -1,0 +1,27 @@
+<ion-slides #slides pager="true" [options]="slideOpts">
+
+  <ion-slide>
+    <div class="slide-content">
+      <div class="image-wrap">
+        <img src="../../assets/images/slide1.jpg" />
+      </div>
+    </div>
+  </ion-slide>
+
+  <ion-slide>
+    <div class="slide-content">
+      <div class="image-wrap">
+        <img src="../../assets/images/slide2.jpg" />
+      </div>
+    </div>
+  </ion-slide>
+
+  <ion-slide>
+    <div class="slide-content">
+      <div class="image-wrap">
+        <img src="../../assets/images/slide3.jpg" (click)="goToHome()"/>
+      </div>
+    </div>
+  </ion-slide>
+
+</ion-slides>
