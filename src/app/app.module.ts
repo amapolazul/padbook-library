@@ -15,6 +15,8 @@ import { SQLite } from '@ionic-native/sqlite/ngx';
 
 import { NgModule, ErrorHandler, Injectable } from "@angular/core";
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import * as Sentry from "@sentry/browser";
 
 Sentry.init({
@@ -33,7 +35,7 @@ export class SentryErrorHandler implements ErrorHandler {
 @NgModule({
     declarations: [AppComponent, BookmarksComponent],
     entryComponents: [],
-    imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule],
+    imports: [BrowserModule, BrowserAnimationsModule, IonicModule.forRoot(), AppRoutingModule],
     providers: [
         BookService,
         BookmarksService,

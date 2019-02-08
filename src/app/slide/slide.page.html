@@ -1,27 +1,13 @@
-<ion-slides #slides pager="true" [options]="slideOpts">
+<div class="background-slider">
+  <div [@simpleFadeAnimation]="'change1'" class="background-slider" *ngIf="class1">
+    <img src="../../assets/images/slide1.jpg">
+  </div>
 
-  <ion-slide>
-    <div class="slide-content">
-      <div class="image-wrap">
-        <img src="../../assets/images/slide1.jpg" />
-      </div>
-    </div>
-  </ion-slide>
+  <div [@simpleFadeAnimation]="'change2'" class="background-slider" *ngIf="class2">
+    <img src="../../assets/images/slide2.jpg">
+  </div>
 
-  <ion-slide>
-    <div class="slide-content">
-      <div class="image-wrap">
-        <img src="../../assets/images/slide2.jpg" />
-      </div>
-    </div>
-  </ion-slide>
-
-  <ion-slide>
-    <div class="slide-content">
-      <div class="image-wrap">
-        <img src="../../assets/images/slide3.jpg" (click)="goToHome()"/>
-      </div>
-    </div>
-  </ion-slide>
-
-</ion-slides>
+  <div [@simpleFadeAnimation]="'change3'" class="background-slider" *ngIf="class3">
+    <img src="../../assets/images/slide3.jpg">
+  </div>
+</div>
