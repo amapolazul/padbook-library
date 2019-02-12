@@ -23,11 +23,11 @@ import {
 
           transition(':enter', [
               style({opacity: 0}),
-              animate(600 )
+              animate(3000 )
           ]),
 
           transition(':leave',
-              animate(600, style({opacity: 0})))
+              animate(3000, style({opacity: 0})))
       ])
   ]
 })
