@@ -15,16 +15,16 @@ export class DatabaseService {
 
     constructor(private sqlite: SQLite) {
 
-        // this.sqlite.create(this.configuration)
-        //     .then((db: SQLiteObject) => {
-        //
-        //     this.db = db;
-        //     db.executeSql('create table if not exists bookmarks(page_index INTEGER PRIMARY KEY)', [])
-        //         .then(() => console.log('Executed SQL'))
-        //         .catch(e => console.log(e));
-        //
-        //
-        // }).catch(e => console.log(e));
+        this.sqlite.create(this.configuration)
+            .then((db: SQLiteObject) => {
+
+            this.db = db;
+            db.executeSql('create table if not exists bookmarks(page_index INTEGER PRIMARY KEY)', [])
+                .then(() => console.log('Executed SQL'))
+                .catch(e => console.log(e));
+
+
+        }).catch(e => console.log(e));
 
     }
 
@@ -33,7 +33,6 @@ export class DatabaseService {
     }
 
     deleteBookMark(index) {
-        console.log(index);
         return this.db.executeSql('delete from bookmarks where page_index = ?;', [index]);
     }
 

@@ -20,7 +20,6 @@ export class HomePage implements OnInit {
     rendition: Rendition;
     navigation: Navigation;
     showElement: boolean;
-    timeout;
 
     constructor(private bookService: BookService,
                 private bookMarkService: BookmarksService,
@@ -43,11 +42,17 @@ export class HomePage implements OnInit {
             const elemet = document.getElementById('touchlayer');
             const t = hammer.buildHammer(elemet);
 
+            let counter = 0;
+
             t.on("swiperight", () => {
+                counter = counter-1;
+                console.log("counter", counter);
                 return this.rendition.prev();
             });
 
             t.on("swipeleft", () => {
+                counter = counter + 1;
+                console.log("counter", counter);
                 return this.rendition.next();
             });
 
@@ -58,29 +63,22 @@ export class HomePage implements OnInit {
     }
 
     showHeader() {
-        this.showElement = true;
-        this.timeout = window.setTimeout(() => {
+        if(this.showElement) {
             this.showElement = false;
-        }, 5000);
-
-        return this.timeout;
+        } else {
+            this.showElement = true;
+        }
     }
 
     nextPage() {
-        window.clearTimeout(this.timeout);
-        this.showHeader();
         return this.rendition.next();
     }
 
     prevPage() {
-        window.clearTimeout(this.timeout);
-        this.showHeader();
         return this.rendition.prev();
     }
 
     bookMarkPage() {
-        window.clearTimeout(this.timeout);
-        this.showHeader();
         const bookMark = new BookMark();
         bookMark.pageIndex = this.rendition.location.start.index;
         this.bookMarkService.addBookMark(bookMark).then(x => {
