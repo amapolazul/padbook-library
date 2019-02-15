@@ -55,10 +55,6 @@ export class HomePage implements OnInit {
                 console.log("counter", counter);
                 return this.rendition.next();
             });
-
-            t.on("tap", () => {
-                this.showHeader();
-            })
         });
     }
 
