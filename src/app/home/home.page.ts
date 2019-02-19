@@ -38,23 +38,25 @@ export class HomePage implements OnInit {
         });
 
         this.rendition.on('displayed', (event) => {
-            const hammer = new HammerGestureConfig();
-            const elemet = document.getElementById('touchlayer');
-            const t = hammer.buildHammer(elemet);
 
-            let counter = 0;
+        });
 
-            t.on("swiperight", () => {
-                counter = counter-1;
-                console.log("counter", counter);
-                return this.rendition.prev();
-            });
+        const hammer = new HammerGestureConfig();
+        const elemet = document.getElementById('touchlayer');
+        const t = hammer.buildHammer(elemet);
 
-            t.on("swipeleft", () => {
-                counter = counter + 1;
-                console.log("counter", counter);
-                return this.rendition.next();
-            });
+        let counter = 0;
+
+        t.on("swiperight", () => {
+            counter = counter-1;
+            console.log("counter", counter);
+            return this.rendition.prev();
+        });
+
+        t.on("swipeleft", () => {
+            counter = counter + 1;
+            console.log("counter", counter);
+            return this.rendition.next();
         });
     }
 
