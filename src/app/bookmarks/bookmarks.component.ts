@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {BookmarksService} from './bookmarks.service';
 import {BookMark} from './bookmark';
 import {BookService} from '../book/book.service';
@@ -7,48 +7,53 @@ import {ToastController} from '@ionic/angular';
 import {DatabaseService} from '../database/database.service';
 
 @Component({
-  selector: 'app-bookmarks',
-  templateUrl: './bookmarks.component.html',
-  styleUrls: ['./bookmarks.component.scss']
+    selector: 'app-bookmarks',
+    templateUrl: './bookmarks.component.html',
+    styleUrls: ['./bookmarks.component.scss']
 })
 export class BookmarksComponent implements OnInit {
 
-  bookMarks: Array<BookMark> = [];
+    bookMarks: Array<BookMark> = [];
 
-  constructor(private bookMarkService: BookmarksService,
-              private bookService: BookService,
-              private router: Router,
-              private database: DatabaseService,
-              public toastController: ToastController) {
+    constructor(private bookMarkService: BookmarksService,
+                private bookService: BookService,
+                private router: Router,
+                private database: DatabaseService,
+                public toastController: ToastController) {
 
-              }
+    }
 
-  ngOnInit() {
+    ngOnInit() {
+        this.initializeBookMarks();
+    }
 
-    this.database.getBookMarkList().then( x  => {
+    initializeBookMarks() {
+        this.database.getBookMarkList().then(x => {
 
-      for (let i = 0; i < x.rows.length; i++) {
-        const item = x.rows.item(i);
-        const bookMark = new BookMark();
-        bookMark.pageIndex = item.page_index;
-        this.bookMarks.push(bookMark);
-      }
-    });
-  }
+            for (let i = 0; i < x.rows.length; i++) {
+                const item = x.rows.item(i);
+                const bookMark = new BookMark();
+                bookMark.pageIndex = item.page_index;
+                this.bookMarks.push(bookMark);
+            }
+        });
+    }
 
-  goToPage(index) {
-    this.bookService.goToPage(index);
-    this.router.navigate(['/home']);
-  }
+    goToPage(index) {
+        this.bookService.goToPage(index);
+        this.router.navigate(['/home']);
+    }
 
-  deleteBookMark(index) {
-    this.bookMarkService.removeBookMark(index).then(x => {
-        this.presentToast("Bookmark borrado correctamente");
-        this.bookMarks.splice(index, 1);
-    }).catch(err => {
-        this.presentToast(err);
-    });
-  }
+    deleteBookMark(index) {
+        this.bookMarkService.removeBookMark(index).then(x => {
+            this.presentToast('Bookmark borrado correctamente');
+            this.bookMarks = [];
+            this.initializeBookMarks();
+        }).catch(err => {
+            this.presentToast(err);
+        });
+    }
+
     async presentToast(message: string) {
         const toast = await this.toastController.create({
             message: message,
