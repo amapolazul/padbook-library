@@ -12,7 +12,7 @@ export class BookService {
     rendtion: Rendition;
 
     constructor() {
-        this.book = new ePub.Book('assets/epub/primaria1.epub');
+        this.book = new ePub.Book('assets/epub/primero.epub');
     }
 
     setRendtion(rendition) {
