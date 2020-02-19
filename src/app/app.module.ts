@@ -18,6 +18,9 @@ import { NgModule, ErrorHandler, Injectable } from "@angular/core";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import * as Sentry from "@sentry/browser";
+import {CsvFileReaderService} from './infrastructure/csv/csv-file-reader.service';
+
+import {HttpClientModule} from '@angular/common/http';
 
 Sentry.init({
     dsn: "https://e186c3712c204519a78cf3793a6df065@sentry.io/1384555"
@@ -35,11 +38,12 @@ export class SentryErrorHandler implements ErrorHandler {
 @NgModule({
     declarations: [AppComponent, BookmarksComponent],
     entryComponents: [],
-    imports: [BrowserModule, BrowserAnimationsModule, IonicModule.forRoot(), AppRoutingModule],
+    imports: [BrowserModule, BrowserAnimationsModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule],
     providers: [
         BookService,
         BookmarksService,
         DatabaseService,
+        CsvFileReaderService,
         StatusBar,
         SplashScreen,
         SQLite,

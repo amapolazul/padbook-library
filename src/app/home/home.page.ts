@@ -7,6 +7,8 @@ import {BookMark} from '../bookmarks/bookmark';
 import Navigation from 'epubjs/types/navigation';
 import {ToastController} from '@ionic/angular';
 import {HammerGestureConfig} from '@angular/platform-browser';
+import { Platform } from '@ionic/angular';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -23,10 +25,12 @@ export class HomePage implements OnInit {
 
     constructor(private bookService: BookService,
                 private bookMarkService: BookmarksService,
-                public toastController: ToastController) {
+                public toastController: ToastController,
+                public plt: Platform,
+                private router: Router) {
 
         this.book = this.bookService.getBook();
-        this.rendition = this.book.renderTo('area');
+        this.rendition = this.book.renderTo('area', {width: 799});
         this.bookService.setRendtion(this.rendition);
         this.rendition.display();
         this.showElement = false;
@@ -57,6 +61,10 @@ export class HomePage implements OnInit {
             counter = counter + 1;
             console.log("counter", counter);
             return this.rendition.next();
+        });
+
+        this.plt.backButton.subscribeWithPriority( 9999, () => {
+            console.log("not do anything");
         });
     }
 

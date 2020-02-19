@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {NavController} from '@ionic/angular';
 import {animate, state, style, transition, trigger} from '@angular/animations';
+import {BookService} from '../book/book.service';
 
 
 @Component({
@@ -31,7 +32,8 @@ export class SlidePage implements OnInit {
     class2 = false;
     class3 = false;
 
-    constructor(public navCtrl: NavController) {
+    constructor(public navCtrl: NavController,
+                public bookService: BookService) {
 
     }
 
@@ -55,14 +57,9 @@ export class SlidePage implements OnInit {
                 this.class2 = true;
             }).then(() => {
                 this.sleep(() => {
-                    this.class2 = false;
-                    this.class3 = true;
-                }).then(() => {
-                    this.sleep(() => {
-                        this.navCtrl.navigateRoot('home');
-                    });
+                    this.navCtrl.navigateRoot('home');
                 });
-            })
+            });
         });
     }
 }

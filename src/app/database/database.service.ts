@@ -9,7 +9,7 @@ export class DatabaseService {
     db: SQLiteObject;
 
     configuration = {
-        name: 'data.db',
+        name: 'inclusion.db',
         location: 'default'
     };
 
@@ -19,7 +19,11 @@ export class DatabaseService {
             .then((db: SQLiteObject) => {
 
             this.db = db;
-            db.executeSql('create table if not exists bookmarks(page_index INTEGER PRIMARY KEY)', [])
+            db.executeSql('create table if not exists bookmarks(page_index INTEGER PRIMARY KEY, book_id INTEGER )', [])
+                .then(() => console.log('Executed SQL'))
+                .catch(e => console.log(e));
+
+            db.executeSql('create table if not exists books(id INTEGER PRIMARY KEY, title VARCHAR, type VARCHAR, url VARCHAR)', [])
                 .then(() => console.log('Executed SQL'))
                 .catch(e => console.log(e));
 
@@ -37,7 +41,15 @@ export class DatabaseService {
     }
 
     insertBookmark(index) {
-        console.log(index);
         return this.db.executeSql('insert into bookmarks(page_index) values(?);', [index]);
+    }
+
+    insertBooks(recordData) {
+        const id = recordData[0];
+        const title = recordData[1];
+        const type = recordData[2];
+        const url = recordData[3];
+
+        return this.db.executeSql('insert into books(id, title, type, url) values(?,?,?,?);', [id, title, type, url]);
     }
 }

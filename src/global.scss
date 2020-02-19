@@ -135,6 +135,12 @@ app-bookmarks {
       }
     }
   }
+
+  ion-content {
+    a {
+      font-size: 40px;
+    }
+  }
 }
 
 app-slide {
@@ -150,3 +156,18 @@ app-slide {
   }
 
 }
+
+//.epub-container {
+//  width: 100% !important;
+//  height: 100% !important;
+//}
+//
+//.epub-view {
+//  width: 100% !important;
+//  height: 100% !important;
+//
+//  iframe {
+//    width: 100% !important;
+//    height: 100% !important;
+//  }
+//}
