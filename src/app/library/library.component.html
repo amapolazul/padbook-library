@@ -1,0 +1,31 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-grid>
+            <ion-row>
+                <ion-col float-left text-center>
+                    <img src="assets/images/logo.svg" title="PadBook" alt="PadBook">
+                </ion-col>
+                <ion-col>
+                    <ion-title class="pb-title">
+                        <span class="pb-text-1">Biblioteca</span> <span class="pb-text-2"></span>
+                    </ion-title>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-grid>
+        <ion-row *ngFor="let bookArray of booksMatrix" >
+            <ion-col float-left *ngFor="let book of bookArray">
+                <div class="book-cover">{{book.title}}</div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>
+
+<ion-footer align-items-center>
+    <ion-toolbar>
+    </ion-toolbar>
+</ion-footer>

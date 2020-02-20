@@ -57,7 +57,7 @@ export class SlidePage implements OnInit {
                 this.class2 = true;
             }).then(() => {
                 this.sleep(() => {
-                    this.navCtrl.navigateRoot('home');
+                    this.navCtrl.navigateRoot('library');
                 });
             });
         });

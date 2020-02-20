@@ -15,20 +15,20 @@ export class DatabaseService {
 
     constructor(private sqlite: SQLite) {
 
-        this.sqlite.create(this.configuration)
-            .then((db: SQLiteObject) => {
-
-            this.db = db;
-            db.executeSql('create table if not exists bookmarks(page_index INTEGER PRIMARY KEY, book_id INTEGER )', [])
-                .then(() => console.log('Executed SQL'))
-                .catch(e => console.log(e));
-
-            db.executeSql('create table if not exists books(id INTEGER PRIMARY KEY, title VARCHAR, type VARCHAR, url VARCHAR)', [])
-                .then(() => console.log('Executed SQL'))
-                .catch(e => console.log(e));
-
-
-        }).catch(e => console.log(e));
+        // this.sqlite.create(this.configuration)
+        //     .then((db: SQLiteObject) => {
+        //
+        //     this.db = db;
+        //     db.executeSql('create table if not exists bookmarks(page_index INTEGER PRIMARY KEY, book_id INTEGER )', [])
+        //         .then(() => console.log('Executed SQL'))
+        //         .catch(e => console.log(e));
+        //
+        //     db.executeSql('create table if not exists books(id INTEGER PRIMARY KEY, title VARCHAR, type VARCHAR, url VARCHAR)', [])
+        //         .then(() => console.log('Executed SQL'))
+        //         .catch(e => console.log(e));
+        //
+        //
+        // }).catch(e => console.log(e));
 
     }
 
