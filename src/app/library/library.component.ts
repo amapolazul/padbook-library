@@ -13,10 +13,13 @@ import {Book} from './library.domain';
 export class LibraryComponent implements OnInit {
 
     booksMatrix: Array<Array<Book>>;
+    booksArray: Array<Book>;
+    bookCategories: Set<string>;
+    selectedCategory: string;
 
     constructor(public navCtrl: NavController,
                 public csvFileReader: CsvFileReaderService) {
-
+        this.bookCategories = new Set();
     }
 
     ngOnInit() {
@@ -30,8 +33,7 @@ export class LibraryComponent implements OnInit {
         let parsedData = papa.parse(data).data;
         parsedData.splice(0, 1);
 
-        let numberOfRows = Math.ceil(parsedData.length / 2);
-        let books = parsedData.map(book => {
+        this.booksArray = parsedData.map(book => {
             let bookParsed = new Book();
             bookParsed.title = book[1];
             bookParsed.type = book[2];
@@ -39,9 +41,11 @@ export class LibraryComponent implements OnInit {
             return bookParsed;
         });
 
-        this.booksMatrix = this.listToMatrix(books, 2);
+        this.booksArray.forEach((book) => {
+            this.bookCategories.add(book.type)
+        });
 
-        console.log(this.booksMatrix)
+        this.booksMatrix = this.listToMatrix(this.booksArray, 2);
     }
 
     listToMatrix(list, elementsPerSubArray) {
@@ -57,6 +61,37 @@ export class LibraryComponent implements OnInit {
         }
 
         return matrix;
+    }
+
+    sortAlphabetically() {
+        this.booksMatrix = this.listToMatrix(this.booksArray.sort(this.sortFunction), 2)
+    }
+
+    filterCategory(event) {
+        let searchTerm = event.detail.value;
+        this.booksMatrix =  this.listToMatrix(this.booksArray.filter(item => {
+            return item.type.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
+        }),2);
+    }
+
+    filterByName(event) {
+        let searchTerm = event.detail.value;
+        this.booksMatrix =  this.listToMatrix(this.booksArray.filter(item => {
+            return item.title.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
+        }),2);
+    }
+
+    private sortFunction(a: Book, b: Book) {
+        let titleBookA = a.title.toUpperCase();
+        let titleBookB = b.title.toUpperCase();
+
+        let comparison = 0;
+        if (titleBookA > titleBookB) {
+            comparison = 1;
+        } else if (titleBookA < titleBookB) {
+            comparison = -1;
+        }
+        return comparison;
     }
 
     private handleError(err) {

@@ -15,7 +15,10 @@
     </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content fullscreen>
+    <ion-searchbar
+            (ionChange)="filterByName($event)">
+    </ion-searchbar>
     <ion-grid>
         <ion-row *ngFor="let bookArray of booksMatrix" >
             <ion-col float-left *ngFor="let book of bookArray">
@@ -27,5 +30,18 @@
 
 <ion-footer align-items-center>
     <ion-toolbar>
+        <ion-grid>
+            <ion-col>
+                <ion-row>
+                    <ion-button color="primary" (click)="sortAlphabetically()">Orden alfab&eacute;tico</ion-button>
+                </ion-row>
+            </ion-col>
+        </ion-grid>
+        <ion-item>
+            <ion-label>Categor&iacute;a</ion-label>
+            <ion-select [value]="selectedCategory" (ionChange)="filterCategory($event)">
+                <ion-select-option *ngFor="let category of bookCategories" value="{{category}}">{{category}}</ion-select-option>
+            </ion-select>
+        </ion-item>
     </ion-toolbar>
 </ion-footer>
