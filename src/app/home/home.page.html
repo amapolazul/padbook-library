@@ -41,6 +41,13 @@
                     <a (click)="bookMarkPage()" >
                         <ion-icon name="bookmark"></ion-icon>
                     </a>
+                    <ion-item style="background: white">
+                        <ion-label>Temas</ion-label>
+                        <ion-select (ionChange)="changeTheme($event)">
+                            <ion-select-option value="light">Light</ion-select-option>
+                            <ion-select-option value="dark">Dark</ion-select-option>
+                        </ion-select>
+                    </ion-item>
                 </ion-col>
                 <ion-col float-right>
                     <a (click)="nextPage()" float-right>

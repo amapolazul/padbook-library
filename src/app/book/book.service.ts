@@ -1,7 +1,8 @@
-import {Injectable} from '@angular/core';
+import {Injectable, Output} from '@angular/core';
 import * as ePub from 'epubjs';
 import Book from 'epubjs/types/book';
 import Rendition from 'epubjs/types/rendition';
+import { EventEmitter } from "@angular/core";
 
 @Injectable({
     providedIn: 'root'
@@ -13,8 +14,10 @@ export class BookService {
 
     isOpen: boolean;
 
+    @Output() bookEmitter: EventEmitter<Book>;
+
     constructor() {
-        this.book = new ePub.Book('assets/epub/inclusion.epub');
+        this.bookEmitter = new EventEmitter<Book>();
     }
 
     setRendtion(rendition) {
@@ -31,6 +34,11 @@ export class BookService {
 
     getBook() {
         return this.book;
+    }
+
+    openNewBook(bookPath: string) {
+        this.book = new ePub.Book(bookPath);
+        this.bookEmitter.emit(this.book)
     }
 
     setIsOpen(value) {

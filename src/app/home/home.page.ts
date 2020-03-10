@@ -66,6 +66,9 @@ export class HomePage implements OnInit {
         this.plt.backButton.subscribeWithPriority( 9999, () => {
             console.log("not do anything");
         });
+
+        this.rendition.themes.register('dark', 'assets/themes/themes.css');
+        this.rendition.themes.register('light', 'assets/themes/themes.css');
     }
 
     showHeader() {
@@ -93,6 +96,18 @@ export class HomePage implements OnInit {
             this.presentToast(err);
             console.log(err);
         });
+    }
+
+    changeTheme(event) {
+        let themSelected = event.detail.value;
+        
+        if(themSelected == 'dark') {
+            this.rendition.themes.select('dark');
+        } else if (themSelected == 'light') {
+            this.rendition.themes.select('light');
+        } else {
+
+        }
     }
 
     async presentToast(message) {

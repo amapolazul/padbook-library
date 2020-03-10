@@ -29,17 +29,23 @@ export class AppComponent {
     ) {
         this.initializeApp();
 
-        this.book = bookService.getBook();
+        this.bookService.bookEmitter.subscribe( book => {
+            this.createTableOfContent(book);
+        });
+
+        this.navigationBar.hideNavigationBar();
+        this.navigationBar.setUp(true);
+        this.statusBar.hide();
+    }
+
+    createTableOfContent(book) {
+        this.book = book;
 
         this.book.ready.then(x => {
             this.appPages = this.book.navigation.toc.map(t => {
                 return {title : t.label, href : t.href};
             });
         });
-
-        this.navigationBar.hideNavigationBar();
-        this.navigationBar.setUp(true);
-        this.statusBar.hide();
     }
 
     closeMenu() {

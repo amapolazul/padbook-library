@@ -2,7 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {NavController} from '@ionic/angular';
 import * as papa from 'papaparse';
 import {CsvFileReaderService} from '../infrastructure/csv/csv-file-reader.service';
-import {Book} from './library.domain';
+import {BookEntity} from './library.domain';
+import {BookService} from '../book/book.service';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -12,13 +14,15 @@ import {Book} from './library.domain';
 })
 export class LibraryComponent implements OnInit {
 
-    booksMatrix: Array<Array<Book>>;
-    booksArray: Array<Book>;
+    booksMatrix: Array<Array<BookEntity>>;
+    booksArray: Array<BookEntity>;
     bookCategories: Set<string>;
     selectedCategory: string;
 
     constructor(public navCtrl: NavController,
-                public csvFileReader: CsvFileReaderService) {
+                private router: Router,
+                public csvFileReader: CsvFileReaderService,
+                public bookService: BookService) {
         this.bookCategories = new Set();
     }
 
@@ -34,7 +38,7 @@ export class LibraryComponent implements OnInit {
         parsedData.splice(0, 1);
 
         this.booksArray = parsedData.map(book => {
-            let bookParsed = new Book();
+            let bookParsed = new BookEntity();
             bookParsed.title = book[1];
             bookParsed.type = book[2];
             bookParsed.url = book[3];
@@ -81,7 +85,7 @@ export class LibraryComponent implements OnInit {
         }),2);
     }
 
-    private sortFunction(a: Book, b: Book) {
+    private sortFunction(a: BookEntity, b: BookEntity) {
         let titleBookA = a.title.toUpperCase();
         let titleBookB = b.title.toUpperCase();
 
@@ -92,6 +96,12 @@ export class LibraryComponent implements OnInit {
             comparison = -1;
         }
         return comparison;
+    }
+
+    openNewBook(bookEntity: BookEntity) {
+        console.log(bookEntity);
+        this.bookService.openNewBook(bookEntity.url);
+        this.router.navigate(['/home']);
     }
 
     private handleError(err) {

@@ -22,7 +22,7 @@
     <ion-grid>
         <ion-row *ngFor="let bookArray of booksMatrix" >
             <ion-col float-left *ngFor="let book of bookArray">
-                <div class="book-cover">{{book.title}}</div>
+                <div class="book-cover" (click)="openNewBook(book)">{{book.title}}</div>
             </ion-col>
         </ion-row>
     </ion-grid>
