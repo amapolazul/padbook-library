@@ -1,4 +1,6 @@
 id,titulo,tipo,url
-1,ANACONDA,EPUB,https://s3.amazonaws.com/epubjs/books/alice/OPS/package.opf
-2,INCLUSION,EPUB,/assets/epub/inclusion.epub
+1,ANACONDA,INFANTIL,https://s3.amazonaws.com/epubjs/books/alice/OPS/package.opf
+2,INCLUSION,TEST,/assets/epub/inclusion.epub
 3,PRIMERO,EPUB,/assets/epub/primero.epub
+4,EMERGENTE,EPUB,/assets/epub/emergente.epub
+5,NORMAL,EPUB,/assets/epub/normal.epub

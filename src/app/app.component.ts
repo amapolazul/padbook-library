@@ -42,8 +42,11 @@ export class AppComponent {
         this.book = book;
 
         this.book.ready.then(x => {
-            this.appPages = this.book.navigation.toc.map(t => {
-                return {title : t.label, href : t.href};
+            this.book.navigation.toc.forEach(t => {
+                this.appPages.push({title : t.label, href : t.href});
+                t.subitems.forEach(si => {
+                    this.appPages.push({title : si.label, href : si.href});
+                });
             });
         });
     }

@@ -22,6 +22,7 @@ import {CsvFileReaderService} from './infrastructure/csv/csv-file-reader.service
 
 import {HttpClientModule} from '@angular/common/http';
 import {LibraryComponent} from './library/library.component';
+import {HomeModalPage} from './home/home-modal/home-modal.page';
 
 Sentry.init({
     dsn: "https://e186c3712c204519a78cf3793a6df065@sentry.io/1384555"
@@ -37,8 +38,8 @@ export class SentryErrorHandler implements ErrorHandler {
 }
 
 @NgModule({
-    declarations: [AppComponent, BookmarksComponent, LibraryComponent],
-    entryComponents: [],
+    declarations: [AppComponent, BookmarksComponent, LibraryComponent, HomeModalPage],
+    entryComponents: [HomeModalPage],
     imports: [BrowserModule, BrowserAnimationsModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule],
     providers: [
         BookService,

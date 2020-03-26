@@ -23,7 +23,7 @@ export class DatabaseService {
         //         .then(() => console.log('Executed SQL'))
         //         .catch(e => console.log(e));
         //
-        //     db.executeSql('create table if not exists books(id INTEGER PRIMARY KEY, title VARCHAR, type VARCHAR, url VARCHAR)', [])
+        //     db.executeSql('create table if not exists page_notes(id INTEGER PRIMARY KEY AUTOINCREMENT, page_index INTEGER, book_id INTEGER, note TEXT)', [])
         //         .then(() => console.log('Executed SQL'))
         //         .catch(e => console.log(e));
         //
@@ -32,8 +32,12 @@ export class DatabaseService {
 
     }
 
-    getBookMarkList() {
-        return this.db.executeSql('select * from bookmarks;', []);
+    getNotesBookandPage(pageIndex, bookId) {
+        return this.db.executeSql('select * from page_notes where page_index = ? and  book_id = ?;', [pageIndex, bookId]);
+    }
+
+    getBookMarkList(bookId) {
+        return this.db.executeSql('select * from bookmarks where book_id = ?;', [bookId]);
     }
 
     deleteBookMark(index) {

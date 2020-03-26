@@ -24,6 +24,10 @@ export class BookService {
         this.rendtion = rendition;
     }
 
+    getRendition() {
+        return this.rendtion;
+    }
+
     goToPage(index: number) {
         this.rendtion.display(index);
     }

@@ -5,10 +5,11 @@ import {BookService} from '../book/book.service';
 import {BookmarksService} from '../bookmarks/bookmarks.service';
 import {BookMark} from '../bookmarks/bookmark';
 import Navigation from 'epubjs/types/navigation';
-import {ToastController} from '@ionic/angular';
+import {ModalController, ToastController} from '@ionic/angular';
 import {HammerGestureConfig} from '@angular/platform-browser';
 import { Platform } from '@ionic/angular';
 import {Router} from '@angular/router';
+import {HomeModalPage} from './home-modal/home-modal.page';
 
 
 @Component({
@@ -25,12 +26,13 @@ export class HomePage implements OnInit {
 
     constructor(private bookService: BookService,
                 private bookMarkService: BookmarksService,
+                private modalController: ModalController,
                 public toastController: ToastController,
                 public plt: Platform,
                 private router: Router) {
 
         this.book = this.bookService.getBook();
-        this.rendition = this.book.renderTo('area', {width: 799});
+        this.rendition = this.book.renderTo('area');
         this.bookService.setRendtion(this.rendition);
         this.rendition.display();
         this.showElement = false;
@@ -98,16 +100,11 @@ export class HomePage implements OnInit {
         });
     }
 
-    changeTheme(event) {
-        let themSelected = event.detail.value;
-        
-        if(themSelected == 'dark') {
-            this.rendition.themes.select('dark');
-        } else if (themSelected == 'light') {
-            this.rendition.themes.select('light');
-        } else {
-
-        }
+    async presentModal() {
+        const modal = await this.modalController.create({
+            component: HomeModalPage
+        });
+        return await modal.present();
     }
 
     async presentToast(message) {
