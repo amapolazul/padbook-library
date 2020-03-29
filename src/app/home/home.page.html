@@ -23,8 +23,10 @@
     </ion-toolbar>
 </ion-header>
 
-<ion-content>
-    <div id="touchlayer" style="width: 100%; height: 100%; position: absolute; z-index: 1" (click)="showHeader()"></div>
+
+<ion-content id="test">
+    <ion-searchbar (ionChange)="searchBook($event)"></ion-searchbar>
+    <!--<div id="touchlayer" style="width: 100%; height: 100%; position: absolute; z-index: 1" (click)="showHeader()"></div>-->
     <div id="area"></div>
 </ion-content>
 
@@ -50,7 +52,7 @@
                     </ion-item>
                     <ion-item>
                         <div (click)="presentModal()">
-                            prueba
+                            <ion-icon name="cog"></ion-icon>
                         </div>
                     </ion-item>
                 </ion-col>

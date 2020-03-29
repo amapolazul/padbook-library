@@ -28,7 +28,7 @@ export class BookmarksComponent implements OnInit {
     }
 
     initializeBookMarks() {
-        this.database.getBookMarkList().then(x => {
+        this.database.getBookMarkList(1).then(x => {
 
             for (let i = 0; i < x.rows.length; i++) {
                 const item = x.rows.item(i);

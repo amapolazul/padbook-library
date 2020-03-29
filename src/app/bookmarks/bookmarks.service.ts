@@ -16,7 +16,7 @@ export class BookmarksService {
     }
 
     getBookMarks() {
-        return this.databaseService.getBookMarkList();
+        return this.databaseService.getBookMarkList(1);
     }
 
     removeBookMark(index) {

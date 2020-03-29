@@ -1,0 +1,26 @@
+<ion-header>
+    <a (click)="dismissModal()">Cerrar</a>
+</ion-header>
+<ion-content>
+    <ion-grid>
+        <ion-row>
+            <ion-col text-center>
+                <ion-item style="background: white">
+                    {{textSelected}}
+                </ion-item>
+                <ion-item>
+                    <ion-textarea [(ngModel)]="noteText"></ion-textarea>
+                </ion-item>
+                <ion-select>
+                    <ion-label>Color</ion-label>
+                    <ion-select (ionChange)="changeColor($event)">
+                        <ion-select-option value="red">Rojo</ion-select-option>
+                        <ion-select-option value="green">Verde</ion-select-option>
+                        <ion-select-option value="yellow">Amarillo</ion-select-option>
+                    </ion-select>
+                </ion-select>
+                <ion-button (click)="addNote()">Crear nota</ion-button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

@@ -19,11 +19,11 @@ export class DatabaseService {
         //     .then((db: SQLiteObject) => {
         //
         //     this.db = db;
-        //     db.executeSql('create table if not exists bookmarks(page_index INTEGER PRIMARY KEY, book_id INTEGER )', [])
+        //     db.executeSql('create table if not exists bookmarks(book_id INTEGER PRIMARY KEY, page_index INTEGER )', [])
         //         .then(() => console.log('Executed SQL'))
         //         .catch(e => console.log(e));
         //
-        //     db.executeSql('create table if not exists page_notes(id INTEGER PRIMARY KEY AUTOINCREMENT, page_index INTEGER, book_id INTEGER, note TEXT)', [])
+        //     db.executeSql('create table if not exists page_notes(id INTEGER PRIMARY KEY AUTOINCREMENT, cfi_range TEXT, text_selected TEXT, book_id INTEGER, page_index INTEGER, note TEXT)', [])
         //         .then(() => console.log('Executed SQL'))
         //         .catch(e => console.log(e));
         //
