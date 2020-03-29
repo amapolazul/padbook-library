@@ -5,13 +5,13 @@ import {BookService} from '../book/book.service';
 import {BookmarksService} from '../bookmarks/bookmarks.service';
 import {BookMark} from '../bookmarks/bookmark';
 import Navigation from 'epubjs/types/navigation';
-import {ModalController, Platform, ToastController} from '@ionic/angular';
+import {MenuController, ModalController, Platform, PopoverController, ToastController} from '@ionic/angular';
 import {Router} from '@angular/router';
-import {HomeModalPage} from './home-modal/home-modal.page';
 import {CreateNotesModalPage} from './create-note-modal/create-notes-modal.page';
 import Contents from 'epubjs/types/contents';
-import * as rangy from 'rangy'
 import Section from 'epubjs/types/section';
+import {FontSizePopPage} from './popovers/font-size/font-size-pop.page';
+import {StorageOptionsPopPage} from './popovers/storage-options/storage-options-pop.page';
 
 
 @Component({
@@ -25,11 +25,14 @@ export class HomePage implements OnInit {
     rendition: Rendition;
     navigation: Navigation;
     showElement: boolean;
+    searchResults: Array<any>;
 
     constructor(private bookService: BookService,
                 private bookMarkService: BookmarksService,
                 private modalController: ModalController,
                 public toastController: ToastController,
+                public popoverController: PopoverController,
+                private menu: MenuController,
                 public plt: Platform,
                 private router: Router) {
 
@@ -38,6 +41,7 @@ export class HomePage implements OnInit {
         this.bookService.setRendtion(this.rendition);
         this.rendition.display();
         this.showElement = false;
+        this.searchResults = new Array<any>();
     }
 
     ngOnInit() {
@@ -105,89 +109,10 @@ export class HomePage implements OnInit {
         let searchTerm = event.detail.value;
         if(searchTerm && searchTerm !== '') {
             this.book.spine.each((item: Section) => {
-                let a = item.find(searchTerm);
-                console.log(a);
+                this.searchResults = item.find(searchTerm);
             });
         }
-
-        // if(this.book) {
-        //     return Promise.all(
-        //         this.book.spine.spineItems.map(item => item.load(this.book.load.bind(this.book)).then(item.find.bind(item, searchTerm)).finally(item.unload.bind(item)))
-        //     ).then(results => {
-        //         console.log(results);
-        //         Promise.resolve([].concat.apply([], results))
-        //     });
-        // }
     }
-
-    // searchBook(search_text){
-    //     let searchTerm = search_text.detail.value;
-    //     let searchResult = [];
-    //
-    //     return new Promise((resolve,reject) =>{
-    //
-    //         this.book.spine.each((item) => {
-    //             item.load( this.book.load.bind(this.book) ).then((contents) => {
-    //
-    //                 let bod = contents.getElementsByTagName('body')[0];
-    //
-    //                 var rangey = rangy.createRange();
-    //                 rangey.selectNode(bod);
-    //
-    //                 let textNodes = rangey.getNodes([3], (node) => {
-    //                     let foo = search_text; //'produce';
-    //                     let regExp = new RegExp("\\b" + foo + "\\b", "i"); // the word 'foo'
-    //                     return regExp.test(node.data);
-    //                 });//the above will obtain all the text nodes within the document body that contain the word in the variable "foo", case insensitively:
-    //
-    //                 var found: any = [], itemx: any = {}, itemers: any = [];
-    //                 textNodes.forEach(textNode => {
-    //                     found.push(textNode);
-    //                 });
-    //                 itemx[item.href] = found;
-    //                 itemers.push(item.href);
-    //                 for (let itx = 0; itx < itemers.length; itx++) {
-    //                     const itemer = itemers[itx];
-    //
-    //                     if(!((itemer !== this.book.currentHref) && (hog_tie === 'SearchBook'))){
-    //                         if(itemx[itemer].length > 0){
-    //
-    //                             /* what matters */
-    //
-    //                             // create search value range..
-    //                             var reSrange = rangy.createRange();
-    //                             (itemx[itemer]).forEach(foundx => {
-    //
-    //                                 var iot: number = 0;
-    //                                 while( foundx.textContent.toLowerCase().indexOf( (search_text).toLowerCase(), iot ) > -1 ){
-    //
-    //                                     reSrange.setStart(foundx, foundx.textContent.toLowerCase().indexOf( (search_text).toLowerCase(), iot ) )
-    //                                     reSrange.setEnd(foundx, foundx.textContent.toLowerCase().indexOf( (search_text).toLowerCase(), iot ) + (search_text).length )
-    //
-    //                                     let mcontents = this.book.movingContentOBJECT[itemer];//this.ePub.currentHref
-    //                                     var searchCFI = mcontents.cfiFromRange( reSrange );
-    //
-    //                                     this.searchResult.push({
-    //                                         href: itemer,//this.ePub.currentHref
-    //                                         cfi: searchCFI.toString(),
-    //                                         range: reSrange
-    //                                     })
-    //
-    //                                     iot = reSrange.endOffset;
-    //                                 }//while
-    //
-    //                             });
-    //
-    //                         }
-    //                     }//hog_tie
-    //                 }//itemers
-    //
-    //                 return resolve(this.searchResult);
-    //
-    //             });
-    //         });
-    //     });
-    // }
 
     showHeader() {
         if(this.showElement) {
@@ -216,11 +141,33 @@ export class HomePage implements OnInit {
         });
     }
 
-    async presentModal() {
-        const modal = await this.modalController.create({
-            component: HomeModalPage
+    openCustom() {
+        this.menu.enable(true, 'search');
+        this.menu.open('search');
+        this.showHeader();
+    }
+
+    goToPageFromCfi(cfi) {
+        this.rendition.display(cfi);
+        this.menu.close('search');
+    }
+
+    async presentStylesPopOver(ev: any) {
+        const popover = await this.popoverController.create({
+            component: FontSizePopPage,
+            event: ev,
+            translucent: true
         });
-        return await modal.present();
+        return await popover.present();
+    }
+
+    async presentStoragePopover(ev: any) {
+        const popover = await this.popoverController.create({
+            component: StorageOptionsPopPage,
+            event: ev,
+            translucent: true
+        });
+        return await popover.present();
     }
 
     async presentCreateNoteModal(cfirange, text) {

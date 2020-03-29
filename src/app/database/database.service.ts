@@ -37,7 +37,8 @@ export class DatabaseService {
     }
 
     getBookMarkList(bookId) {
-        return this.db.executeSql('select * from bookmarks where book_id = ?;', [bookId]);
+        return new Promise( resolve => { return  {book_id: bookId, page_index: 1} });
+        // return this.db.executeSql('select * from bookmarks where book_id = ?;', [bookId]);
     }
 
     deleteBookMark(index) {

@@ -99,8 +99,8 @@ export class LibraryComponent implements OnInit {
     }
 
     openNewBook(bookEntity: BookEntity) {
-        console.log(bookEntity);
         this.bookService.openNewBook(bookEntity.url);
+        this.bookService.setBookMetadata(bookEntity);
         this.router.navigate(['/home']);
     }
 

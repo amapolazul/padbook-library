@@ -5,6 +5,7 @@ import {BookService} from '../book/book.service';
 import {Router} from '@angular/router';
 import {ToastController} from '@ionic/angular';
 import {DatabaseService} from '../database/database.service';
+import {BookEntity} from '../library/library.domain';
 
 @Component({
     selector: 'app-bookmarks',
@@ -14,12 +15,15 @@ import {DatabaseService} from '../database/database.service';
 export class BookmarksComponent implements OnInit {
 
     bookMarks: Array<BookMark> = [];
+    bookMetadata: BookEntity;
 
     constructor(private bookMarkService: BookmarksService,
                 private bookService: BookService,
                 private router: Router,
                 private database: DatabaseService,
                 public toastController: ToastController) {
+
+        this.bookMetadata = this.bookService.getBookMetadata();
 
     }
 
@@ -28,15 +32,20 @@ export class BookmarksComponent implements OnInit {
     }
 
     initializeBookMarks() {
-        this.database.getBookMarkList(1).then(x => {
 
-            for (let i = 0; i < x.rows.length; i++) {
-                const item = x.rows.item(i);
-                const bookMark = new BookMark();
-                bookMark.pageIndex = item.page_index;
-                this.bookMarks.push(bookMark);
-            }
-        });
+        // this.database.getBookMarkList(this.bookMetadata.id).then(x => {
+        //
+        //     for (let i = 0; i < x.rows.length; i++) {
+        //         const item = x.rows.item(i);
+        //         const bookMark = new BookMark();
+        //         bookMark.pageIndex = item.page_index;
+        //         this.bookMarks.push(bookMark);
+        //     }
+        // });
+
+        const bookMark = new BookMark();
+        bookMark.pageIndex = 1;
+        this.bookMarks.push(bookMark);
     }
 
     goToPage(index) {

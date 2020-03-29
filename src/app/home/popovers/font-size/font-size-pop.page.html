@@ -1,0 +1,25 @@
+<ion-content>
+    <ion-grid>
+        <ion-row>
+            <ion-col text-center>{{currentSize}}%</ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col text-center>
+                <ion-button (click)="increaseSize()">+</ion-button>
+                <ion-button (click)="decreaseSize()">-</ion-button>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col>Temas</ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col><p (click)="changeTheme('dark')">Dark</p></ion-col>
+            <ion-col><p (click)="changeTheme('light')">Light</p></ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col>
+                <a (click)="dismissPopover()">Cerrar</a>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

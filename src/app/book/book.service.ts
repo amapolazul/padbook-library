@@ -3,6 +3,7 @@ import * as ePub from 'epubjs';
 import Book from 'epubjs/types/book';
 import Rendition from 'epubjs/types/rendition';
 import { EventEmitter } from "@angular/core";
+import {BookEntity} from '../library/library.domain';
 
 @Injectable({
     providedIn: 'root'
@@ -11,6 +12,8 @@ export class BookService {
 
     book: Book;
     rendtion: Rendition;
+    bookMetadata: BookEntity;
+    lastFontSize: number;
 
     isOpen: boolean;
 
@@ -18,6 +21,23 @@ export class BookService {
 
     constructor() {
         this.bookEmitter = new EventEmitter<Book>();
+        this.lastFontSize = 100;
+    }
+
+    setBookMetadata(bookMetadata: BookEntity) {
+        this.bookMetadata = bookMetadata;
+    }
+
+    getBookMetadata() {
+        return this.bookMetadata;
+    }
+
+    setLastFontSizeSize(size) {
+        this.lastFontSize = size;
+    }
+
+    getLastFontsize() {
+        return this.lastFontSize;
     }
 
     setRendtion(rendition) {

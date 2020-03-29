@@ -11,20 +11,21 @@ import {BookService} from './book/book.service';
 import {BookmarksService} from './bookmarks/bookmarks.service';
 import {BookmarksComponent} from './bookmarks/bookmarks.component';
 import {DatabaseService} from './database/database.service';
-import { SQLite } from '@ionic-native/sqlite/ngx';
+import {SQLite} from '@ionic-native/sqlite/ngx';
 
-import { NgModule, ErrorHandler, Injectable } from "@angular/core";
+import {ErrorHandler, Injectable, NgModule} from '@angular/core';
 
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
-import * as Sentry from "@sentry/browser";
+import * as Sentry from '@sentry/browser';
 import {CsvFileReaderService} from './infrastructure/csv/csv-file-reader.service';
 
 import {HttpClientModule} from '@angular/common/http';
 import {LibraryComponent} from './library/library.component';
-import {HomeModalPage} from './home/home-modal/home-modal.page';
 import {CreateNotesModalPage} from './home/create-note-modal/create-notes-modal.page';
 import {FormsModule} from '@angular/forms';
+import {FontSizePopPage} from './home/popovers/font-size/font-size-pop.page';
+import {StorageOptionsPopPage} from './home/popovers/storage-options/storage-options-pop.page';
 
 Sentry.init({
     dsn: "https://e186c3712c204519a78cf3793a6df065@sentry.io/1384555"
@@ -40,8 +41,8 @@ export class SentryErrorHandler implements ErrorHandler {
 }
 
 @NgModule({
-    declarations: [AppComponent, BookmarksComponent, LibraryComponent, HomeModalPage, CreateNotesModalPage],
-    entryComponents: [HomeModalPage, CreateNotesModalPage],
+    declarations: [AppComponent, BookmarksComponent, LibraryComponent, CreateNotesModalPage, FontSizePopPage, StorageOptionsPopPage],
+    entryComponents: [CreateNotesModalPage, FontSizePopPage, StorageOptionsPopPage],
     imports: [BrowserModule, BrowserAnimationsModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, FormsModule],
     providers: [
         BookService,
