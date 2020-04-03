@@ -5,28 +5,62 @@
         </ion-buttons>
         <ion-grid>
             <ion-row>
-                <ion-col float-left text-center>
+                <!--<ion-col float-left text-center>
                     <img src="assets/images/logo.svg" title="PadBook" alt="PadBook">
-                </ion-col>
-                <!--<ion-col>-->
-                    <!--<ion-button routerLink="/bookmarks" float-right class="pb-button-bm">-->
-                        <!--<ion-icon name="bookmark"></ion-icon>-->
-                    <!--</ion-button>-->
+                </ion-col>-->
+                <!--<ion-col>
+                    <ion-button routerLink="/bookmarks" float-right class="pb-button-bm">
+                        <ion-icon name="bookmark"></ion-icon>
+                    </ion-button>-->
                 <!--</ion-col>-->
-                <ion-col>
+                <!--<ion-col>
                     <ion-button (click)="openCustom()">
                         <ion-icon name="search" ></ion-icon>
                     </ion-button>
-                </ion-col>
-                <ion-col>
+                </ion-col>-->
+                <!--<ion-col>
                     <ion-button (click)="presentStylesPopOver()">
                         <ion-icon name="color-palette" ></ion-icon>
                     </ion-button>
-                </ion-col>
-                <ion-col>
+                </ion-col>-->
+                <!--<ion-col>
                     <ion-button (click)="presentStoragePopover()">
                         <ion-icon name="grid"></ion-icon>
                     </ion-button>
+                </ion-col>-->
+                <ion-col float-left size="5">
+                    <div class="pb-title-text">GENESIS</div>
+                </ion-col>
+                <ion-col float-right text-right>
+                    <ion-grid>
+                        <ion-row>
+                            <ion-col>
+                                <ion-button routerLink="/library" class="pb-button">
+                                    <img src="assets/images/icon_home.svg">
+                                </ion-button>
+                            </ion-col>
+                            <ion-col>
+                                <ion-button (click)="openCustom()" class="pb-button">
+                                    <img src="assets/images/icon_search.svg">
+                                </ion-button>
+                            </ion-col>
+                            <ion-col>
+                                <ion-button (click)="presentStylesPopOver()" class="pb-button">
+                                    <img src="assets/images/icon_letter.svg">
+                                </ion-button>
+                            </ion-col>
+                            <ion-col>
+                                <ion-button (click)="presentStoragePopover()" class="pb-button">
+                                    <img src="assets/images/icon_more.svg">
+                                </ion-button>
+                            </ion-col>
+                            <ion-col>
+                                <ion-button routerLink="/bookmarks" class="pb-button">
+                                    <img src="assets/images/icon_bookmark.svg">
+                                </ion-button>
+                            </ion-col>
+                        </ion-row>
+                    </ion-grid>
                 </ion-col>
             </ion-row>
         </ion-grid>
@@ -36,18 +70,19 @@
     </ion-toolbar>
 </ion-header>
 
-
 <ion-content id="test">
     <ion-menu side="end" menuId="search" type="push" contentId="main-search" style="z-index: 1">
         <ion-content>
-            <ion-searchbar (ionChange)="searchBook($event)" style="color: white"></ion-searchbar>
-                <ion-menu-toggle auto-hide="false" *ngFor="let result of searchResults">
-                <ion-list style="color: white">
-                    <ion-item>
-                        <p (click)="goToPageFromCfi(result.cfi)">{{result.excerpt}}</p>
-                    </ion-item>
-                </ion-list>
-            </ion-menu-toggle>
+            <div class="pb-right">
+                <ion-searchbar (ionChange)="searchBook($event)" style="color: white"></ion-searchbar>
+                <ion-menu-toggle auto-hide="false">
+                    <ion-list>
+                        <ion-item *ngFor="let result of searchResults">
+                            <p (click)="goToPageFromCfi(result.cfi)">{{result.excerpt}}</p>
+                        </ion-item>
+                    </ion-list>
+                </ion-menu-toggle>
+            </div>
         </ion-content>
     </ion-menu>
     <ion-router-outlet id="main-search"></ion-router-outlet>
@@ -65,9 +100,10 @@
                     </a>
                 </ion-col>
                 <ion-col text-center>
-                    <a (click)="bookMarkPage()" >
+                    <!--<a (click)="bookMarkPage()" >
                         <ion-icon name="bookmark"></ion-icon>
-                    </a>
+                    </a>-->
+                    <img src="assets/images/logo_bottom.svg" title="PadBook" alt="PadBook">
                 </ion-col>
                 <ion-col float-right>
                     <a (click)="nextPage()" float-right>

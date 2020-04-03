@@ -1,24 +1,36 @@
-<ion-content>
+<ion-content class="popover">
     <ion-grid>
-        <ion-row>
+        <!--<ion-row>
             <ion-col text-center>{{currentSize}}%</ion-col>
-        </ion-row>
-        <ion-row>
-            <ion-col text-center>
-                <ion-button (click)="increaseSize()">+</ion-button>
-                <ion-button (click)="decreaseSize()">-</ion-button>
-            </ion-col>
-        </ion-row>
-        <ion-row>
-            <ion-col>Temas</ion-col>
-        </ion-row>
-        <ion-row>
-            <ion-col><p (click)="changeTheme('dark')">Dark</p></ion-col>
-            <ion-col><p (click)="changeTheme('light')">Light</p></ion-col>
-        </ion-row>
+        </ion-row>-->
         <ion-row>
             <ion-col>
-                <a (click)="dismissPopover()">Cerrar</a>
+                Tamaño<br />
+                de la letra
+            </ion-col>
+            <ion-col text-center>
+                <ion-button (click)="decreaseSize()"><img src="assets/images/icon_minus.svg"></ion-button>
+            </ion-col>
+            <ion-col text-center>
+                <ion-button (click)="increaseSize()"><img src="assets/images/icon_plus.svg"></ion-button>
+            </ion-col>
+        </ion-row>
+        <hr>
+        <ion-row>
+            <ion-col>
+                Temas
+            </ion-col>
+            <ion-col text-center>
+                <ion-button (click)="changeTheme('light')"><img src="assets/images/icon_white.svg"></ion-button>
+            </ion-col>
+            <ion-col text-center>
+                <ion-button (click)="changeTheme('dark')"><img src="assets/images/icon_black.svg"></ion-button>
+            </ion-col>
+        </ion-row>
+        <hr>
+        <ion-row>
+            <ion-col text-center>
+                <a (click)="dismissPopover()"><img src="assets/images/icon_close.svg"></a>
             </ion-col>
         </ion-row>
     </ion-grid>

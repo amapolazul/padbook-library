@@ -1,9 +1,25 @@
 .dark {
     background: #000;
-    color: #fff !important;
+    color: #fff;
+}
+
+.dark p {
+	color: #fff;
+}
+
+.dark a {
+	color: #00ffff;
 }
 
 .light {
     background: #fff;
     color: #000;
+}
+
+.light p {
+	color: #000;
+}
+
+.light a {
+	color: #01184a;
 }

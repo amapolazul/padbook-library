@@ -2,13 +2,17 @@
     <ion-toolbar>
         <ion-grid>
             <ion-row>
-                <ion-col float-left text-center>
-                    <img src="assets/images/logo.svg" title="PadBook" alt="PadBook">
+                <ion-col float-left size="9">
+                    <!--<img src="assets/images/logo.svg" title="PadBook" alt="PadBook">-->
+                    <a class="pb-title-text active">ANTIGUO TESTAMENTO</a>
+                    <a class="pb-title-line">|</a>
+                    <a class="pb-title-text">NUEVO TESTAMENTO</a>
                 </ion-col>
-                <ion-col>
-                    <ion-title class="pb-title">
+                <ion-col text-right>
+                    <!--<ion-title class="pb-title">
                         <span class="pb-text-1">Biblioteca</span> <span class="pb-text-2"></span>
-                    </ion-title>
+                    </ion-title>-->
+                    <a class="pb-title-search"><img src="assets/images/icon_search.svg"></a>
                 </ion-col>
             </ion-row>
         </ion-grid>
@@ -20,9 +24,28 @@
             (ionChange)="filterByName($event)">
     </ion-searchbar>
     <ion-grid>
-        <ion-row *ngFor="let bookArray of booksMatrix" >
+        <ion-row>
+            <ion-col text-center>
+                <h1>ANTIGUO TESTAMENTO</h1>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <ion-grid>
+        <ion-row *ngFor="let bookArray of booksMatrix">
             <ion-col float-left *ngFor="let book of bookArray">
-                <div class="book-cover" (click)="openNewBook(book)">{{book.title}}</div>
+                <!--<div class="book-cover" (click)="openNewBook(book)">{{book.title}}</div>-->
+                <div (click)="openNewBook(book)">
+                    <ion-grid class="pb-book-item">
+                        <ion-row>
+                            <ion-col text-center size="4">
+                                <div class="pb-book-image"><img src="assets/images/icon_cover.svg"></div>
+                            </ion-col>
+                            <ion-col>
+                                <div class="pb-book-title">{{book.title}}</div>
+                            </ion-col>
+                        </ion-row>
+                    </ion-grid>
+                </div>
             </ion-col>
         </ion-row>
     </ion-grid>
@@ -30,18 +53,25 @@
 
 <ion-footer align-items-center>
     <ion-toolbar>
-        <ion-grid>
+        <!--<ion-grid>
             <ion-col>
                 <ion-row>
                     <ion-button color="primary" (click)="sortAlphabetically()">Orden alfab&eacute;tico</ion-button>
                 </ion-row>
             </ion-col>
-        </ion-grid>
-        <ion-item>
+        </ion-grid>-->
+        <!--<ion-item>
             <ion-label>Categor&iacute;a</ion-label>
             <ion-select [value]="selectedCategory" (ionChange)="filterCategory($event)">
                 <ion-select-option *ngFor="let category of bookCategories" value="{{category}}">{{category}}</ion-select-option>
             </ion-select>
-        </ion-item>
+        </ion-item>-->
+        <ion-grid>
+            <ion-row>
+                <ion-col text-center>
+                    <img src="assets/images/logo_bottom.svg" title="PadBook" alt="PadBook">
+                </ion-col>
+            </ion-row>
+        </ion-grid>
     </ion-toolbar>
 </ion-footer>
