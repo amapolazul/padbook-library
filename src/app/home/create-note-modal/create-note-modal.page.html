@@ -1,25 +1,54 @@
-<ion-header>
+<!--<ion-header>
     <a (click)="dismissModal()">Cerrar</a>
-</ion-header>
-<ion-content>
+</ion-header>-->
+<ion-content class="popover">
     <ion-grid>
         <ion-row>
-            <ion-col text-center>
+            <ion-col size="4">
+                Selección
+            </ion-col>
+            <ion-col>
                 <ion-item style="background: white">
                     {{textSelected}}
                 </ion-item>
+            </ion-col>
+        </ion-row>
+        <hr>
+        <ion-row>
+            <ion-col size="4">
+                Guardar como
+            </ion-col>
+            <ion-col>
                 <ion-item>
                     <ion-textarea [(ngModel)]="noteText"></ion-textarea>
                 </ion-item>
+            </ion-col>
+        </ion-row>
+        <hr>
+        <ion-row>
+            <ion-col size="4">
+                Color
+            </ion-col>
+            <ion-col>
                 <ion-select>
                     <ion-label>Color</ion-label>
-                    <ion-select (ionChange)="changeColor($event)">
+                    <ion-select placeholder="Color" (ionChange)="changeColor($event)">
                         <ion-select-option value="red">Rojo</ion-select-option>
                         <ion-select-option value="green">Verde</ion-select-option>
                         <ion-select-option value="yellow">Amarillo</ion-select-option>
                     </ion-select>
                 </ion-select>
-                <ion-button (click)="addNote()">Crear nota</ion-button>
+            </ion-col>
+        </ion-row>
+        <hr>
+        <ion-row>
+            <ion-col text-center>
+                <ion-button (click)="addNote()" class="pb-border">Crear nota</ion-button>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col text-center>
+                <a (click)="dismissModal()"><img src="assets/images/icon_close.svg"></a>
             </ion-col>
         </ion-row>
     </ion-grid>
