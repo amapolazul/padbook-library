@@ -31,6 +31,7 @@ export class HomePage implements OnInit {
     storageOptions: FormGroup;
     showBookMarks: boolean;
     showNotes: boolean;
+    bookName: string;
 
     constructor(private bookService: BookService,
                 private bookMarkService: BookmarksService,
@@ -53,6 +54,8 @@ export class HomePage implements OnInit {
         this.storageOptions = new FormGroup({
             opts: new FormControl({value: 'bookmarks', disabled: false})
         });
+
+        this.bookName = this.bookService.getBookMetadata().title
     }
 
     ngOnInit() {

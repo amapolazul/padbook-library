@@ -17,6 +17,7 @@ export class AppComponent {
     rootPage: any = 'Slide';
     public appPages = [];
     book: Book;
+    bookName: string;
 
     constructor(
         private platform: Platform,
@@ -40,6 +41,8 @@ export class AppComponent {
 
     createTableOfContent(book) {
         this.book = book;
+
+        this.bookName = this.bookService.getBookMetadata().title;
 
         this.book.ready.then(x => {
             this.book.navigation.toc.forEach(t => {
