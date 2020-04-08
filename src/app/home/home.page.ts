@@ -12,6 +12,8 @@ import Contents from 'epubjs/types/contents';
 import Section from 'epubjs/types/section';
 import {FontSizePopPage} from './popovers/font-size/font-size-pop.page';
 import {StorageOptionsPopPage} from './popovers/storage-options/storage-options-pop.page';
+import {FormControl, FormGroup } from '@angular/forms';
+
 
 
 @Component({
@@ -26,6 +28,9 @@ export class HomePage implements OnInit {
     navigation: Navigation;
     showElement: boolean;
     searchResults: Array<any>;
+    storageOptions: FormGroup;
+    showBookMarks: boolean;
+    showNotes: boolean;
 
     constructor(private bookService: BookService,
                 private bookMarkService: BookmarksService,
@@ -42,6 +47,12 @@ export class HomePage implements OnInit {
         this.rendition.display();
         this.showElement = false;
         this.searchResults = new Array<any>();
+
+        this.showBookMarks = true;
+        this.showNotes = false;
+        this.storageOptions = new FormGroup({
+            opts: new FormControl({value: 'bookmarks', disabled: false})
+        });
     }
 
     ngOnInit() {
@@ -141,9 +152,9 @@ export class HomePage implements OnInit {
         });
     }
 
-    openCustom() {
-        this.menu.enable(true, 'search');
-        this.menu.open('search');
+    openCustom(menuId) {
+        this.menu.enable(true, menuId);
+        this.menu.open(menuId);
         this.showHeader();
     }
 
@@ -187,5 +198,17 @@ export class HomePage implements OnInit {
             duration: 2000
         });
         toast.present();
+    }
+
+    doSubmit(event) {
+        const storageValues = this.storageOptions.getRawValue();
+        if(storageValues.opts === 'notes') {
+            this.showNotes = true;
+            this.showBookMarks = false;
+        } else {
+            this.showNotes = false;
+            this.showBookMarks = true;
+        }
+        event.preventDefault();
     }
 }

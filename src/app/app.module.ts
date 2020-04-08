@@ -23,7 +23,7 @@ import {CsvFileReaderService} from './infrastructure/csv/csv-file-reader.service
 import {HttpClientModule} from '@angular/common/http';
 import {LibraryComponent} from './library/library.component';
 import {CreateNotesModalPage} from './home/create-note-modal/create-notes-modal.page';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {FontSizePopPage} from './home/popovers/font-size/font-size-pop.page';
 import {StorageOptionsPopPage} from './home/popovers/storage-options/storage-options-pop.page';
 
@@ -43,7 +43,7 @@ export class SentryErrorHandler implements ErrorHandler {
 @NgModule({
     declarations: [AppComponent, BookmarksComponent, LibraryComponent, CreateNotesModalPage, FontSizePopPage, StorageOptionsPopPage],
     entryComponents: [CreateNotesModalPage, FontSizePopPage, StorageOptionsPopPage],
-    imports: [BrowserModule, BrowserAnimationsModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, FormsModule],
+    imports: [BrowserModule, BrowserAnimationsModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, FormsModule, ReactiveFormsModule],
     providers: [
         BookService,
         BookmarksService,

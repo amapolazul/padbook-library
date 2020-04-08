@@ -1,4 +1,4 @@
-<ion-header>
+<ion-header *ngIf="showHeader">
     <ion-toolbar>
         <ion-grid>
             <ion-row>
@@ -12,17 +12,24 @@
                     <!--<ion-title class="pb-title">
                         <span class="pb-text-1">Biblioteca</span> <span class="pb-text-2"></span>
                     </ion-title>-->
-                    <a class="pb-title-search"><img src="assets/images/icon_search.svg"></a>
+                    <a class="pb-title-search" (click)="openCustom()"><img src="assets/images/icon_search.svg"></a>
                 </ion-col>
             </ion-row>
         </ion-grid>
     </ion-toolbar>
 </ion-header>
 
-<ion-content fullscreen>
-    <ion-searchbar
-            (ionChange)="filterByName($event)">
-    </ion-searchbar>
+<ion-content>
+    <ion-menu side="end" menuId="search-library" type="push" contentId="main-search-library" (ionDidClose)="showHeaderF()" style="z-index: 1">
+        <ion-content>
+            <div class="pb-right">
+                <ion-searchbar
+                        (ionChange)="filterByName($event)" style="color: white">
+                </ion-searchbar>
+            </div>
+        </ion-content>
+    </ion-menu>
+    <ion-router-outlet id="main-search-library"></ion-router-outlet>
     <ion-grid>
         <ion-row>
             <ion-col text-center>

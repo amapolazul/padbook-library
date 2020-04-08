@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {NavController} from '@ionic/angular';
+import {MenuController, NavController} from '@ionic/angular';
 import * as papa from 'papaparse';
 import {CsvFileReaderService} from '../infrastructure/csv/csv-file-reader.service';
 import {BookEntity} from './library.domain';
@@ -18,19 +18,22 @@ export class LibraryComponent implements OnInit {
     booksArray: Array<BookEntity>;
     bookCategories: Set<string>;
     selectedCategory: string;
+    showHeader: boolean;
 
     constructor(public navCtrl: NavController,
                 private router: Router,
                 public csvFileReader: CsvFileReaderService,
-                public bookService: BookService) {
+                public bookService: BookService,
+                private menu: MenuController) {
         this.bookCategories = new Set();
+        this.showHeader = true;
     }
 
     ngOnInit() {
         this.csvFileReader.readCsvData().subscribe(
             data => this.extractData(data),
             err => this.handleError(err)
-        )
+        );
     }
 
     private extractData(data) {
@@ -77,6 +80,14 @@ export class LibraryComponent implements OnInit {
             return item.type.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
         }),2);
     }
+
+    openCustom() {
+        this.menu.enable(true, 'search-library');
+        this.menu.open('search-library');
+        this.showHeader = false;
+    }
+
+    showHeaderF() { this.showHeader = true }
 
     filterByName(event) {
         let searchTerm = event.detail.value;
