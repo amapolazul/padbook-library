@@ -118,9 +118,31 @@ export class LibraryComponent implements OnInit {
 
     filterByName(event) {
         let searchTerm = event.detail.value;
-        this.booksMatrix =  this.listToMatrix(this.booksArray.filter(item => {
-            return item.title.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
-        }),2);
+        if(searchTerm == '') {
+            this.bookMapMatrix = new Map<string, Array<Array<BookEntity>>>();
+            this.bookCategories = new Set<string>();
+            this.booksArray = new Array<BookEntity>();
+            if(this.showingAntTest) {
+                this.csvFileReader.readCsvData('anttest.csv').subscribe(
+                    data => this.extractData(data),
+                    err => this.handleError(err)
+                );
+            } else {
+                this.csvFileReader.readCsvData('test.csv').subscribe(
+                    data => this.extractData(data),
+                    err => this.handleError(err)
+                );
+            }
+        } else {
+            this.bookMapMatrix = new Map<string, Array<Array<BookEntity>>>();
+            const bookArray = this.booksArray.filter(item => {
+                return item.title.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
+            });
+            const categories = bookArray.map(book => {return book.type;});
+            categories.forEach(category => {
+                this.bookMapMatrix.set(category, this.listToMatrix(bookArray,2));
+            });
+        }
     }
 
     private sortFunction(a: BookEntity, b: BookEntity) {
