@@ -16,7 +16,7 @@ export class CsvFileReaderService {
     }
 
     readCsvData() {
-        return this.http.get('assets/csv/test.csv', {
+        return this.http.get('assets/csv/anttest.csv', {
             headers: new HttpHeaders()
                 .set('Content-Type', 'text/csv')
                 .append('Access-Control-Allow-Methods', 'GET')

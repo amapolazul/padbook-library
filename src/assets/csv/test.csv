@@ -1,11 +1,5 @@
 id,titulo,tipo,url
-1,Génesis (Gén),PENTATEUCO,/assets/epub/001-genesis.epub
-2,Éxodo (Éx),PENTATEUCO,/assets/epub/002-exodo.epub
-3,Levítico (Lv),PENTATEUCO,/assets/epub/003-levitico.epub
-4,Números (Nm),PENTATEUCO,/assets/epub/004-numeros.epub
-5,Deuteronomio (Dt),PENTATEUCO,/assets/epub/005-deuteronomio.epub
-6,Josué (Jos),LIBROS HISTÓRICOS Y NARRATIVOS,/assets/epub/006-josue.epub
-7,Jueces (Jc),LIBROS HISTÓRICOS Y NARRATIVOS,/assets/epub/007-jueces.epub
-8,Rut (Rt),LIBROS HISTÓRICOS Y NARRATIVOS,/assets/epub/008-rut.epub
-9,Samuel (1 S),LIBROS HISTÓRICOS Y NARRATIVOS,/assets/epub/009-samuel.epub
-10,Samuel (2 S),LIBROS HISTÓRICOS Y NARRATIVOS,/assets/epub/010-samuel.epub
+11,Génesis (Gén),PENTATEUCO,/assets/epub/001-genesis.epub
+12,Éxodo (Éx),PENTATEUCO,/assets/epub/002-exodo.epub
+13,Levítico (Lv),PENTATEUCO,/assets/epub/003-levitico.epub
+14,Números (Nm),PENTATEUCO,/assets/epub/004-numeros.epub

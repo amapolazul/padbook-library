@@ -32,7 +32,6 @@ export class HighlightPopPage implements OnInit {
 
         this.book = this.bookService.getBook();
         this.rendition = this.bookService.getRendition();
-
         this.colorDictionary.set('red', {"fill": "#00FFFF", "fill-opacity": "0.3", "mix-blend-mode": "multiply"} );
         this.colorDictionary.set('blue', {"fill": "blue", "fill-opacity": "0.3", "mix-blend-mode": "multiply"} );
         this.colorDictionary.set('green', {"fill": "green", "fill-opacity": "0.3", "mix-blend-mode": "multiply"} );
