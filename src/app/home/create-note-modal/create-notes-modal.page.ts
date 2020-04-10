@@ -18,25 +18,17 @@ export class CreateNotesModalPage implements OnInit {
     navigation: Navigation;
 
     textSelected: string;
-    noteColor: string;
     noteText: string;
 
     @Input() cfirange: string;
     @Input() text: string;
 
-    colorDictionary: Map<string, any>;
 
     constructor(private bookService: BookService,
                 private modalController: ModalController) {
 
         this.book = this.bookService.getBook();
         this.rendition = this.bookService.getRendition();
-
-        this.colorDictionary = new Map<string, any>();
-
-        this.colorDictionary.set('red', {"fill": "red", "fill-opacity": "0.3", "mix-blend-mode": "multiply"} );
-        this.colorDictionary.set('yellow', {"fill": "yellow", "fill-opacity": "0.3", "mix-blend-mode": "multiply"} );
-        this.colorDictionary.set('green', {"fill": "green", "fill-opacity": "0.3", "mix-blend-mode": "multiply"} );
     }
 
     ngOnInit() {
@@ -51,15 +43,13 @@ export class CreateNotesModalPage implements OnInit {
         });
     }
 
-    changeColor(event) {
-        console.log(event);
-        this.noteColor = event.detail.value;
-    }
-
     addNote() {
-        let colorSelected = this.colorDictionary.get('green');
-        console.log(colorSelected);
-        this.rendition.annotations.add('highlight', this.cfirange, {}, (e) => {} , "hl", colorSelected);
+        this.rendition.annotations.add('highlight',
+            this.cfirange,
+            {},
+            (e) => {} ,
+            "hl",
+            {"fill": "yellow", "fill-opacity": "0.3", "mix-blend-mode": "multiply"});
         this.dismissModal();
     }
 }

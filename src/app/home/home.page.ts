@@ -13,6 +13,7 @@ import Section from 'epubjs/types/section';
 import {FontSizePopPage} from './popovers/font-size/font-size-pop.page';
 import {StorageOptionsPopPage} from './popovers/storage-options/storage-options-pop.page';
 import {FormControl, FormGroup } from '@angular/forms';
+import {HighlightPopPage} from './popovers/highlight-popover/highlight-pop.page';
 
 
 
@@ -80,7 +81,7 @@ export class HomePage implements OnInit {
                 if (range) {
                     let text = range.toString();
                     let textNode = document.createTextNode(text);
-                    thisRed.presentCreateNoteModal(cfiRange, textNode.wholeText);
+                    thisRed.presentHighlightPopover(cfiRange, textNode.wholeText);
                 }
             });
         });
@@ -175,24 +176,16 @@ export class HomePage implements OnInit {
         return await popover.present();
     }
 
-    async presentStoragePopover(ev: any) {
+    async presentHighlightPopover(cfirange, text) {
         const popover = await this.popoverController.create({
-            component: StorageOptionsPopPage,
-            event: ev,
+            component: HighlightPopPage,
+            componentProps: {
+                cfirange: cfirange,
+                text: text
+            },
             translucent: true
         });
         return await popover.present();
-    }
-
-    async presentCreateNoteModal(cfirange, text) {
-        const modal = await this.modalController.create({
-            component: CreateNotesModalPage,
-            componentProps: {
-                'cfirange': cfirange,
-                'text': text
-            }
-        });
-        return await modal.present();
     }
 
     async presentToast(message) {

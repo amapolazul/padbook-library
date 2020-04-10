@@ -1,0 +1,32 @@
+<ion-content class="popover">
+    <ion-grid>
+        <ion-row>
+            <ion-col text-right="">
+                <a (click)="closePopOver()">Cerrar</a>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <ion-grid *ngIf="!isHighLight">
+        <ion-row>
+            <ion-col text-center>
+                <ion-button (click)="showHighLightOptions()">Subrayar</ion-button>
+            </ion-col>
+            <ion-col text-center>
+                <ion-button (click)="presentCreateNoteModal()">Crear nota</ion-button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <ion-grid *ngIf="isHighLight">
+        <ion-row>
+            <ion-col text-center>
+                <ion-button (click)="addNote('green')">Green</ion-button>
+            </ion-col>
+            <ion-col text-center>
+                <ion-button (click)="addNote('blue')">Blue</ion-button>
+            </ion-col>
+            <ion-col text-center>
+                <ion-button (click)="addNote('red')">Red</ion-button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>
