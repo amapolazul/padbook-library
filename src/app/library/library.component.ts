@@ -19,6 +19,7 @@ export class LibraryComponent implements OnInit {
     bookCategories: Set<string>;
     selectedCategory: string;
     showHeader: boolean;
+    bookMapMatrix: Map<string, Array<Array<BookEntity>>>;
 
     constructor(public navCtrl: NavController,
                 private router: Router,
@@ -27,6 +28,7 @@ export class LibraryComponent implements OnInit {
                 private menu: MenuController) {
         this.bookCategories = new Set();
         this.showHeader = true;
+        this.bookMapMatrix = new Map<string, Array<Array<BookEntity>>>();
     }
 
     ngOnInit() {
@@ -52,6 +54,11 @@ export class LibraryComponent implements OnInit {
             this.bookCategories.add(book.type)
         });
 
+        this.bookCategories.forEach( category => {
+            const booksMatrix = this.filterCategory(category);
+            this.bookMapMatrix.set(category, booksMatrix);
+        });
+
         this.booksMatrix = this.listToMatrix(this.booksArray, 2);
     }
 
@@ -74,12 +81,17 @@ export class LibraryComponent implements OnInit {
         this.booksMatrix = this.listToMatrix(this.booksArray.sort(this.sortFunction), 2)
     }
 
-    filterCategory(event) {
-        let searchTerm = event.detail.value;
-        this.booksMatrix =  this.listToMatrix(this.booksArray.filter(item => {
-            return item.type.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
+    filterCategory(category) {
+        return this.listToMatrix(this.booksArray.filter(item => {
+            return item.type.toLowerCase().indexOf(category.toLowerCase()) > -1;
         }),2);
     }
+
+    // filterCategory(category) {
+    //     this.booksMatrix =  this.listToMatrix(this.booksArray.filter(item => {
+    //         return item.type.toLowerCase().indexOf(category.toLowerCase()) > -1;
+    //     }),2);
+    // }
 
     openCustom() {
         this.menu.enable(true, 'search-library');

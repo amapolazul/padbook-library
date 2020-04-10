@@ -30,18 +30,16 @@
         </ion-content>
     </ion-menu>
     <ion-router-outlet id="main-search-library"></ion-router-outlet>
-    <ion-grid>
+    <ion-grid *ngFor="let category of bookCategories">
         <ion-row>
             <ion-col text-center>
-                <h1>ANTIGUO TESTAMENTO</h1>
+                <h1>{{category}}</h1>
             </ion-col>
         </ion-row>
-    </ion-grid>
-    <ion-grid>
-        <ion-row *ngFor="let bookArray of booksMatrix">
-            <ion-col float-left *ngFor="let book of bookArray">
+        <ion-row *ngFor="let bookArray of bookMapMatrix.get(category)">
+            <ion-col float-lef *ngFor="let book of bookArray">
                 <!--<div class="book-cover" (click)="openNewBook(book)">{{book.title}}</div>-->
-                <div (click)="openNewBook(book)">
+                <div (click)="openNewBook(book)" *ngIf="book.type == category">
                     <ion-grid class="pb-book-item">
                         <ion-row>
                             <ion-col text-center size="4">
