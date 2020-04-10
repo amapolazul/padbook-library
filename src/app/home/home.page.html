@@ -87,37 +87,39 @@
     </ion-menu>
     <ion-menu side="end" menuId="storage-content" type="push" contentId="storage-content" style="z-index: 1">
         <ion-content>
-            <form (submit)="doSubmit($event)" [formGroup]="storageOptions">
-                <ion-radio-group value="biff" formControlName="opts">
-                    <ion-item>
-                        <ion-label><p>Bookmarks</p></ion-label>
-                        <ion-radio slot="start" value="bookmarks" (click)="doSubmit($event)"></ion-radio>
-                    </ion-item>
-                    <ion-item>
-                        <ion-label><p>Notes</p></ion-label>
-                        <ion-radio slot="start" value="notes" (click)="doSubmit($event)"></ion-radio>
-                    </ion-item>
-                </ion-radio-group>
-            </form>
-            <ion-item-divider color="secondary">
-                <ion-label>
-                    Resultados
-                </ion-label>
-            </ion-item-divider>
-            <ion-menu-toggle auto-hide="false" *ngIf="showBookMarks">
-                <ion-list>
-                    <ion-item *ngFor="let result of bookmarks">
-                        <p (click)="goToPageFromCfi(result.cfi)">{{result.excerpt}}</p>
-                    </ion-item>
-                </ion-list>
-            </ion-menu-toggle>
-            <ion-menu-toggle auto-hide="false" *ngIf="showNotes">
-                <ion-list>
-                    <ion-item *ngFor="let result of notes">
-                        <p (click)="goToPageFromCfi(result.cfi)">{{result.excerpt}}</p>
-                    </ion-item>
-                </ion-list>
-            </ion-menu-toggle>
+            <div class="pb-right">
+                <form (submit)="doSubmit($event)" [formGroup]="storageOptions">
+                    <ion-radio-group value="biff" formControlName="opts">
+                        <ion-item>
+                            <ion-label><p>Páginas Guardadas</p></ion-label>
+                            <ion-radio slot="start" value="bookmarks" (click)="doSubmit($event)"></ion-radio>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label><p>Notas</p></ion-label>
+                            <ion-radio slot="start" value="notes" (click)="doSubmit($event)"></ion-radio>
+                        </ion-item>
+                    </ion-radio-group>
+                </form>
+                <ion-item-divider>
+                    <ion-label>
+                        Resultados:
+                    </ion-label>
+                </ion-item-divider>
+                <ion-menu-toggle auto-hide="false" *ngIf="showBookMarks">
+                    <ion-list>
+                        <ion-item *ngFor="let result of bookmarks">
+                            <p (click)="goToPageFromCfi(result.cfi)">{{result.excerpt}}</p>
+                        </ion-item>
+                    </ion-list>
+                </ion-menu-toggle>
+                <ion-menu-toggle auto-hide="false" *ngIf="showNotes">
+                    <ion-list>
+                        <ion-item *ngFor="let result of notes">
+                            <p (click)="goToPageFromCfi(result.cfi)">{{result.excerpt}}</p>
+                        </ion-item>
+                    </ion-list>
+                </ion-menu-toggle>
+            </div>
         </ion-content>
     </ion-menu>
     <ion-router-outlet id="storage-content"></ion-router-outlet>

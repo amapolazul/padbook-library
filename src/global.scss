@@ -10,10 +10,18 @@
 @import '~@ionic/angular/css/text-transformation.css';
 @import '~@ionic/angular/css/flex-utils.css';
 
+/** PadBook **/
+
 /* ---------- Pages ---------- */
 
-/* Menu */
+/* App General */
 
+/* Header */
+ion-header {
+  --ion-background-color: var(--ion-color-pb-blue-1);
+}
+
+/* Menu */
 ion-menu {
   --ion-background-color: transparent;
   /* Header */
@@ -29,7 +37,8 @@ ion-menu {
           color: white;
         }
         .pb-text-2 {
-          font-size: 14px;
+          padding: 8px 0;
+          font-size: 16px;
           color: var(--ion-color-pb-blue-2);
         }
       }
@@ -42,11 +51,22 @@ ion-menu {
   /* Content */
   ion-content {
     --ion-background-color: rgba(1, 24, 74, 0.9);
+  }
+}
+
+/* Content */
+ion-content {
+  /* Left */
+  .pb-left {
+    padding: 20px;
     ion-list {
+      padding: 0;
       --ion-background-color: transparent;
       ion-menu-toggle {
         --ion-background-color: transparent;
         ion-item {
+          --padding-start: 0;
+          --padding-end: 0;
           --ion-border-color: var(--ion-color-pb-blue-2);
           .item-native {
             --ion-padding: 0 15px !important;
@@ -60,49 +80,253 @@ ion-menu {
       }
     }
   }
+  /* Right */
+  .pb-right {
+    padding: 20px;
+    ion-radio-group {
+      --ion-background-color: transparent;
+      ion-item {
+        --padding-start: 0;
+        --padding-end: 0;
+        border-top: 1px solid var(--ion-color-pb-blue-2);
+        &:last-child {
+          border-bottom: 1px solid var(--ion-color-pb-blue-2);
+        }
+        ion-label {
+          p {
+            color: white;
+          }
+        }
+        ion-radio {
+          --color: var(--ion-color-pb-blue-2);
+          --color-checked: var(--ion-color-pb-blue-2);
+        }
+      }
+    }
+    ion-item-divider {
+      --ion-background-color: transparent;
+      ion-label {
+        --color: white !important;
+      }
+    }
+    ion-menu-toggle {
+      ion-list {
+        padding: 0;
+        --ion-background-color: transparent;
+        ion-item {
+          --padding-start: 0;
+          --padding-end: 0;
+          border-top: 1px solid var(--ion-color-pb-blue-2);
+          font-size: 14px;
+          color: white;
+          &:last-child {
+            border-bottom: 1px solid var(--ion-color-pb-blue-2);
+          }
+        }
+      }
+    }
+  }
+  /* PopOver */
+  &.popover {
+    --padding-top: 20px;
+    --padding-end: 10px;
+    --padding-bottom: 20px;
+    --padding-start: 10px;
+    --background: var(--ion-color-pb-blue-1);
+    border: 1px solid var(--ion-color-pb-blue-2);
+    font-size: 14px;
+    --color: white;
+    ion-button {
+      margin: 0;
+      --padding-start: 0;
+      --padding-end: 0;
+      --background: var(--ion-color-pb-blue-1);
+      --box-shadow: none;
+      &.pb-simple {
+        font-weight: normal;
+        color: var(--ion-color-pb-blue-2);
+        text-transform: none;
+      }
+      &.pb-border {
+        height: inherit;
+        --padding-top: 5px;
+        --padding-end: 10px;
+        --padding-bottom: 5px;
+        --padding-start: 10px;
+        border: 1px solid var(--ion-color-pb-blue-2);
+      }
+    }
+    hr {
+      background-color: var(--ion-color-pb-blue-2);
+    }
+  }
 }
 
-/* Home */
+/* Modal */
+ion-modal {
+  --width: 80% !important;
+  --height: 60% !important;
+}
+
+/* List */
+ion-list {
+  &.popover {
+    padding: 20px;
+    background-color: var(--ion-color-pb-blue-1);
+    border: 1px solid var(--ion-color-pb-blue-2);
+    ion-item {
+      --padding-start: 0;
+      --padding-end: 0;
+      --background: var(--ion-color-pb-blue-1);
+      border-bottom: 1px solid var(--ion-color-pb-blue-2);
+      font-size: 14px;
+      color: white;
+      &:last-child {
+        border-bottom: 0;
+      }
+    }
+  }
+}
+
+/* Footer */
+ion-footer {
+  --ion-background-color: var(--ion-color-pb-blue-1);
+  ion-toolbar {
+    a {
+      font-size: 30px;
+      color: var(--ion-color-pb-blue-2);
+    }
+  }
+}
+
+/* App Slide */
+
+app-slide {
+  img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+  .background-slider {
+    width: 100%;
+    height: 100%;
+    background: black;
+    text-align: center;
+  }
+}
+
+/* App Library */
+
+app-library {
+  /* Header */
+  ion-header {
+    .pb-title-text {
+      margin: 0 1em;
+      padding: 5px 0 10px 0;
+      font-size: 12px;
+      color: white;
+      letter-spacing: 1px;
+      display: inline-block;
+      &.active {
+        border-bottom: 2px solid var(--ion-color-pb-blue-2);
+        color: var(--ion-color-pb-blue-2);
+      }
+    }
+    .pb-title-line {
+      color: var(--ion-color-pb-blue-2);
+    }
+    .pb-title-search {
+      /*width: 34px;*/
+      height: 34px;
+      margin: 0;
+      /*--padding-start: 0;*/
+      /*--padding-end: 0;*/
+      --background: transparent;
+      background: {
+        image: url(./assets/images/icon_search.svg);
+        size: cover;
+      }
+      --box-shadow: none;
+      &.active {
+        background-image: url(./assets/images/icon_search_white.svg);
+      }
+    }
+  }
+  /* Content */
+  ion-content {
+    h1 {
+      margin: 0;
+      font-size: 14px;
+      letter-spacing: 2px;
+    }
+    .book-cover {
+      width: 100%;
+      height: 0;
+      padding-top: 66.64%;
+      background-image: url("./assets/images/caratula.png");
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+    .pb-book-item {
+      border-top: 1px solid var(--ion-color-pb-border);
+      .pb-book-title {
+        padding-top: 20px;
+        font: {
+          size: 12px;
+          weight: bold;
+        }
+        color: var(--ion-color-pb-blue-1);
+      }
+    }
+  }
+}
+
+/* App Home */
 
 app-home {
   /* Header */
   ion-header {
     ion-toolbar {
-      --ion-background-color: var(--ion-color-pb-blue-1);
       ion-buttons {
         ion-menu-button {
           --color: var(--ion-color-pb-blue-2);
         }
       }
-      .pb-title {
-        padding: 10px;
-        .pb-text-1 {
-          font-size: 14px;
-          color: white;
-        }
-        .pb-text-2 {
-          padding-left: 5px;
-          font-size: 14px;
-          color: var(--ion-color-pb-blue-2);
-        }
+    }
+    .pb-title {
+      padding: 10px;
+      .pb-text-1 {
+        font-size: 14px;
+        color: white;
       }
-      .pb-button-bm {
-        --background: var(--ion-color-pb-blue-1);
-        --color: var(--ion-color-pb-blue-2);
+      .pb-text-2 {
+        padding-left: 5px;
+        font-size: 14px;
+        color: var(--ion-color-pb-blue-2);
       }
     }
-  }
-  /* Footer */
-  ion-footer {
-    ion-toolbar {
-      --ion-background-color: var(--ion-color-pb-blue-1);
-      a {
-        font-size: 30px;
-        color: var(--ion-color-pb-blue-2);
+    .pb-button-bm {
+      --background: var(--ion-color-pb-blue-1);
+      --color: var(--ion-color-pb-blue-2);
+    }
+    .pb-title-text {
+      padding: 20px 0;
+      font-size: 12px;
+      color: var(--ion-color-pb-blue-2);
+      letter-spacing: 1px;
+    }
+    ion-button {
+      &.pb-button {
+        margin: 0;
+        --padding-start: 0;
+        --padding-end: 0;
+        --background: transparent;
+        --box-shadow: none;
       }
     }
   }
 }
+
+/* ---------- Pages Old ---------- */
 
 app-bookmarks {
   ion-header {
@@ -143,33 +367,6 @@ app-bookmarks {
   }
 }
 
-app-slide {
-  img {
-    max-width: 100%;
-    max-height: 100%;
-  }
-
-  .background-slider {
-    background: black;
-    height: 100%;
-    width: 100%;
-  }
-
-}
-
-app-library {
-  .book-cover {
-    background-image: url("./assets/images/caratula.png");
-    background-size: contain;
-    background-repeat: no-repeat;
-    width: 100%;
-    height: 0;
-    padding-top: 66.64%;
-  }
-}
-
-
-
 //.epub-container {
 //  width: 100% !important;
 //  height: 100% !important;
@@ -184,149 +381,3 @@ app-library {
 //    height: 100% !important;
 //  }
 //}
-
-/* ---------- Pages ---------- */
-
-/* General */
-
-ion-modal {
-  --width: 80% !important;
-  --height: 60% !important;
-}
-
-ion-content {
-  &.popover {
-    --padding-top: 20px;
-    --padding-end: 10px;
-    --padding-bottom: 20px;
-    --padding-start: 10px;
-    --background: var(--ion-color-pb-blue-1);
-    border: 1px solid var(--ion-color-pb-blue-2);
-    font-size: 14px;
-    --color: #fff;
-    ion-button {
-      margin: 0;
-      --padding-start: 0;
-      --padding-end: 0;
-      --background: var(--ion-color-pb-blue-1);
-      --box-shadow: none;
-      &.pb-border {
-        --padding-start: 10px;
-        --padding-end: 10px;
-        border: 1px solid var(--ion-color-pb-blue-2);
-      }
-    }
-    hr {
-      background-color: var(--ion-color-pb-blue-2);
-    }
-  }
-}
-
-ion-list {
-  &.popover {
-    padding: 20px;
-    background-color: var(--ion-color-pb-blue-1);
-    border: 1px solid var(--ion-color-pb-blue-2);
-    ion-item {
-      --padding-start: 0;
-      --padding-end: 0;
-      --background: var(--ion-color-pb-blue-1);
-      border-bottom: 1px solid var(--ion-color-pb-blue-2);
-      font-size: 14px;
-      color: #fff;
-      &:last-child {
-        border-bottom: 0;
-      }
-    }
-  }
-}
-
-/* Library */
-
-app-library {
-  /* Header */
-  ion-header {
-    --ion-background-color: var(--ion-color-pb-blue-1);
-    .pb-title-text {
-      margin: 0 20px;
-      padding: 5px 0 10px 0;
-      font-size: 12px;
-      color: #fff;
-      letter-spacing: 1px;
-      display: inline-block;
-      &.active {
-        border-bottom: 2px solid var(--ion-color-pb-blue-2);
-        color: var(--ion-color-pb-blue-2);
-      }
-    }
-    .pb-title-line {
-      color: var(--ion-color-pb-blue-2);
-    }
-  }
-  /* Content */
-  ion-content {
-    h1 {
-      margin: 0;
-      font-size: 14px;
-      letter-spacing: 2px;
-    }
-    .pb-book-item {
-      border-top: 1px solid var(--ion-color-pb-border);
-      .pb-book-title {
-        padding-top: 20px;
-        font: {
-          size: 12px;
-          weight: bold;
-        }
-        color: var(--ion-color-pb-blue-1);
-      }
-    }
-  }
-  /* Footer */
-  ion-footer {
-    --ion-background-color: var(--ion-color-pb-blue-1);
-  }
-}
-
-/* Home */
-
-app-home {
-  /* Header */
-  ion-header {
-    .pb-title-text {
-      padding: 20px;
-      font-size: 12px;
-      color: var(--ion-color-pb-blue-2);
-      letter-spacing: 1px;
-    }
-    ion-button {
-      &.pb-button {
-        margin: 0;
-        --padding-start: 0;
-        --padding-end: 0;
-        --background: var(--ion-color-pb-blue-1);
-        --box-shadow: none;
-      }
-    }
-  }
-  /* Content */
-  ion-content {
-    .pb-right {
-      padding: 20px;
-      ion-menu-toggle {
-        ion-list {
-          ion-item {
-            --padding-start: 0;
-            --padding-end: 0;
-            border-top: 1px solid var(--ion-color-pb-blue-2);
-            font-size: 14px;
-            color: #fff;
-            &:last-child {
-              border-bottom: 1px solid var(--ion-color-pb-blue-2);
-            }
-          }
-        }
-      }
-    }
-  }
-}

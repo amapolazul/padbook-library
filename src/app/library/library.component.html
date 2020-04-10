@@ -2,7 +2,7 @@
     <ion-toolbar>
         <ion-grid>
             <ion-row>
-                <ion-col float-left size="9">
+                <ion-col float-left size="11">
                     <!--<img src="assets/images/logo.svg" title="PadBook" alt="PadBook">-->
                     <a class="pb-title-text" [ngClass]="{'active' : showingAntTest}" (click)="changeTestament('anttest.csv')">ANTIGUO TESTAMENTO</a>
                     <a class="pb-title-line">|</a>
@@ -12,7 +12,7 @@
                     <!--<ion-title class="pb-title">
                         <span class="pb-text-1">Biblioteca</span> <span class="pb-text-2"></span>
                     </ion-title>-->
-                    <a class="pb-title-search" (click)="openCustom()"><img src="assets/images/icon_search.svg"></a>
+                    <ion-button class="pb-title-search" (click)="openCustom()"></ion-button>
                 </ion-col>
             </ion-row>
         </ion-grid>
@@ -37,7 +37,7 @@
             </ion-col>
         </ion-row>
         <ion-row *ngFor="let bookArray of bookMapMatrix.get(category)">
-            <ion-col float-lef *ngFor="let book of bookArray">
+            <ion-col float-left *ngFor="let book of bookArray">
                 <!--<div class="book-cover" (click)="openNewBook(book)">{{book.title}}</div>-->
                 <div (click)="openNewBook(book)" *ngIf="book.type == category">
                     <ion-grid class="pb-book-item">

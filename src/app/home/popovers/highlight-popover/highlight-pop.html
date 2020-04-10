@@ -1,31 +1,33 @@
 <ion-content class="popover">
-    <ion-grid>
-        <ion-row>
-            <ion-col text-right="">
-                <a (click)="closePopOver()">Cerrar</a>
-            </ion-col>
-        </ion-row>
-    </ion-grid>
     <ion-grid *ngIf="!isHighLight">
         <ion-row>
             <ion-col text-center>
-                <ion-button (click)="showHighLightOptions()">Subrayar</ion-button>
+                <a (click)="showHighLightOptions()"><img src="assets/images/icon_highlight.svg"></a>
+                <ion-button (click)="showHighLightOptions()" class="pb-simple">Resaltar</ion-button>
             </ion-col>
             <ion-col text-center>
-                <ion-button (click)="presentCreateNoteModal()">Crear nota</ion-button>
+                <a (click)="presentCreateNoteModal()"><img src="assets/images/icon_note.svg"></a>
+                <ion-button (click)="presentCreateNoteModal()" class="pb-simple">Crear Nota</ion-button>
             </ion-col>
         </ion-row>
     </ion-grid>
     <ion-grid *ngIf="isHighLight">
         <ion-row>
             <ion-col text-center>
-                <ion-button (click)="addNote('green')">Green</ion-button>
+                <ion-button (click)="addNote('yellow')"><img src="assets/images/icon_color_yellow.svg"></ion-button>
             </ion-col>
             <ion-col text-center>
-                <ion-button (click)="addNote('blue')">Blue</ion-button>
+                <ion-button (click)="addNote('blue')"><img src="assets/images/icon_color_blue.svg"></ion-button>
             </ion-col>
             <ion-col text-center>
-                <ion-button (click)="addNote('red')">Red</ion-button>
+                <ion-button (click)="addNote('red')"><img src="assets/images/icon_color_red.svg"></ion-button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <ion-grid>
+        <ion-row>
+            <ion-col text-center>
+                <ion-button (click)="closePopOver()" class="pb-simple pb-border">Cerrar</ion-button>
             </ion-col>
         </ion-row>
     </ion-grid>
