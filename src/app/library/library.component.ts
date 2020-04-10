@@ -20,6 +20,7 @@ export class LibraryComponent implements OnInit {
     selectedCategory: string;
     showHeader: boolean;
     bookMapMatrix: Map<string, Array<Array<BookEntity>>>;
+    showingAntTest: boolean;
 
     constructor(public navCtrl: NavController,
                 private router: Router,
@@ -28,11 +29,24 @@ export class LibraryComponent implements OnInit {
                 private menu: MenuController) {
         this.bookCategories = new Set();
         this.showHeader = true;
+        this.showingAntTest = true;
         this.bookMapMatrix = new Map<string, Array<Array<BookEntity>>>();
     }
 
     ngOnInit() {
-        this.csvFileReader.readCsvData().subscribe(
+        this.csvFileReader.readCsvData('anttest.csv').subscribe(
+            data => this.extractData(data),
+            err => this.handleError(err)
+        );
+    }
+
+    changeTestament(testFile) {
+        if(testFile == 'anttest.csv') {
+            this.showingAntTest = true;
+        } else {
+            this.showingAntTest = false;
+        }
+        this.csvFileReader.readCsvData(testFile).subscribe(
             data => this.extractData(data),
             err => this.handleError(err)
         );
@@ -40,6 +54,7 @@ export class LibraryComponent implements OnInit {
 
     private extractData(data) {
         let parsedData = papa.parse(data).data;
+        this.bookCategories = new Set<string>();
         parsedData.splice(0, 1);
 
         this.booksArray = parsedData.map(book => {

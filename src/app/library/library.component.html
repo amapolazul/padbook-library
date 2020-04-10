@@ -4,9 +4,9 @@
             <ion-row>
                 <ion-col float-left size="9">
                     <!--<img src="assets/images/logo.svg" title="PadBook" alt="PadBook">-->
-                    <a class="pb-title-text active">ANTIGUO TESTAMENTO</a>
+                    <a class="pb-title-text" [ngClass]="{'active' : showingAntTest}" (click)="changeTestament('anttest.csv')">ANTIGUO TESTAMENTO</a>
                     <a class="pb-title-line">|</a>
-                    <a class="pb-title-text">NUEVO TESTAMENTO</a>
+                    <a class="pb-title-text" [ngClass]="{'active' : !showingAntTest}" (click)="changeTestament('test.csv')">NUEVO TESTAMENTO</a>
                 </ion-col>
                 <ion-col text-right>
                     <!--<ion-title class="pb-title">

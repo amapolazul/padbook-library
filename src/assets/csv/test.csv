@@ -1,5 +1,5 @@
 id,titulo,tipo,url
-11,Génesis (Gén),PENTATEUCO,/assets/epub/001-genesis.epub
-12,Éxodo (Éx),PENTATEUCO,/assets/epub/002-exodo.epub
-13,Levítico (Lv),PENTATEUCO,/assets/epub/003-levitico.epub
-14,Números (Nm),PENTATEUCO,/assets/epub/004-numeros.epub
+11,Evangelio de Mateo,EVANGELIOS,/assets/epub/001-genesis.epub
+12,Evangelio de Marcos,EVANGELIOS,/assets/epub/002-exodo.epub
+13,Evangelio de Lucas,EVANGELIOS,/assets/epub/003-levitico.epub
+14,Evangelio de Mateo,EVANGELIOS,/assets/epub/004-numeros.epub

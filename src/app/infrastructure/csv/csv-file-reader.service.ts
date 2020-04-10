@@ -12,11 +12,10 @@ export class CsvFileReaderService {
     headerRow: any[] = [];
 
     constructor(private http: HttpClient) {
-        this.readCsvData();
     }
 
-    readCsvData() {
-        return this.http.get('assets/csv/anttest.csv', {
+    readCsvData(file) {
+        return this.http.get('assets/csv/' + file, {
             headers: new HttpHeaders()
                 .set('Content-Type', 'text/csv')
                 .append('Access-Control-Allow-Methods', 'GET')
