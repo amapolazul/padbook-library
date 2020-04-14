@@ -16,26 +16,26 @@ export class DatabaseService {
 
     constructor(private sqlite: SQLite) {
 
-        this.sqlite.create(this.configuration)
-            .then((db: SQLiteObject) => {
-
-            this.db = db;
-            db.executeSql('create table if not exists bookmarks(id INTEGER PRIMARY KEY AUTOINCREMENT, book_id INTEGER, cfi TEXT )', [])
-                .then(() => console.log('Executed SQL'))
-                .catch(e => console.log(e));
-
-            db.executeSql('create table if not exists book_notes(id INTEGER PRIMARY KEY AUTOINCREMENT, cfi_range TEXT, text_selected TEXT, book_id INTEGER, note TEXT)', [])
-                .then(() => console.log('Executed SQL'))
-                .catch(e => console.log(e));
-
-            db.executeSql('create table if not exists book_highlights(id INTEGER PRIMARY KEY AUTOINCREMENT, cfi_range TEXT, text_selected TEXT, book_id INTEGER, style TEXT)', [])
-                .then(() => console.log('Executed SQL'))
-                .catch(e => console.log(e));
-
-            console.log('instance ', this.db);
-
-
-        }).catch(e => console.log(e));
+        // this.sqlite.create(this.configuration)
+        //     .then((db: SQLiteObject) => {
+        //
+        //     this.db = db;
+        //     db.executeSql('create table if not exists bookmarks(id INTEGER PRIMARY KEY AUTOINCREMENT, book_id INTEGER, cfi TEXT )', [])
+        //         .then(() => console.log('Executed SQL'))
+        //         .catch(e => console.log(e));
+        //
+        //     db.executeSql('create table if not exists book_notes(id INTEGER PRIMARY KEY AUTOINCREMENT, cfi_range TEXT, text_selected TEXT, book_id INTEGER, note TEXT)', [])
+        //         .then(() => console.log('Executed SQL'))
+        //         .catch(e => console.log(e));
+        //
+        //     db.executeSql('create table if not exists book_highlights(id INTEGER PRIMARY KEY AUTOINCREMENT, cfi_range TEXT, text_selected TEXT, book_id INTEGER, style TEXT)', [])
+        //         .then(() => console.log('Executed SQL'))
+        //         .catch(e => console.log(e));
+        //
+        //     console.log('instance ', this.db);
+        //
+        //
+        // }).catch(e => console.log(e));
 
     }
 
