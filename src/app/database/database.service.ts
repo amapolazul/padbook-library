@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {SQLite, SQLiteObject} from '@ionic-native/sqlite/ngx';
+import {BookMark, BookNote, HighLight} from './models/library.models';
 
 @Injectable({
     providedIn: 'root'
@@ -9,52 +10,70 @@ export class DatabaseService {
     db: SQLiteObject;
 
     configuration = {
-        name: 'inclusion.db',
+        name: 'padbook.db',
         location: 'default'
     };
 
     constructor(private sqlite: SQLite) {
 
-        // this.sqlite.create(this.configuration)
-        //     .then((db: SQLiteObject) => {
-        //
-        //     this.db = db;
-        //     db.executeSql('create table if not exists bookmarks(book_id INTEGER PRIMARY KEY, page_index INTEGER )', [])
-        //         .then(() => console.log('Executed SQL'))
-        //         .catch(e => console.log(e));
-        //
-        //     db.executeSql('create table if not exists page_notes(id INTEGER PRIMARY KEY AUTOINCREMENT, cfi_range TEXT, text_selected TEXT, book_id INTEGER, page_index INTEGER, note TEXT)', [])
-        //         .then(() => console.log('Executed SQL'))
-        //         .catch(e => console.log(e));
-        //
-        //
-        // }).catch(e => console.log(e));
+        this.sqlite.create(this.configuration)
+            .then((db: SQLiteObject) => {
 
-    }
+            this.db = db;
+            db.executeSql('create table if not exists bookmarks(id INTEGER PRIMARY KEY AUTOINCREMENT, book_id INTEGER, cfi TEXT )', [])
+                .then(() => console.log('Executed SQL'))
+                .catch(e => console.log(e));
 
-    getNotesBookandPage(pageIndex, bookId) {
-        return this.db.executeSql('select * from page_notes where page_index = ? and  book_id = ?;', [pageIndex, bookId]);
+            db.executeSql('create table if not exists book_notes(id INTEGER PRIMARY KEY AUTOINCREMENT, cfi_range TEXT, text_selected TEXT, book_id INTEGER, note TEXT)', [])
+                .then(() => console.log('Executed SQL'))
+                .catch(e => console.log(e));
+
+            db.executeSql('create table if not exists book_highlights(id INTEGER PRIMARY KEY AUTOINCREMENT, cfi_range TEXT, text_selected TEXT, book_id INTEGER, style TEXT)', [])
+                .then(() => console.log('Executed SQL'))
+                .catch(e => console.log(e));
+
+            console.log('instance ', this.db);
+
+
+        }).catch(e => console.log(e));
+
     }
 
     getBookMarkList(bookId) {
-        return new Promise( resolve => { return  {book_id: bookId, page_index: 1} });
-        // return this.db.executeSql('select * from bookmarks where book_id = ?;', [bookId]);
+        return this.db.executeSql('select * from bookmarks where book_id = ?', [bookId]);
     }
 
-    deleteBookMark(index) {
-        return this.db.executeSql('delete from bookmarks where page_index = ?;', [index]);
+    deleteBookMark(bookMark: BookMark) {
+        return this.db.executeSql('delete from bookmarks where  id = ?', [bookMark.id]);
     }
 
-    insertBookmark(index) {
-        return this.db.executeSql('insert into bookmarks(page_index) values(?);', [index]);
+    insertBookmark(bookMark: BookMark) {
+        return this.db.executeSql('insert into bookmarks(book_id, cfi) values(?,?)', [bookMark.book_id, bookMark.cfi]);
     }
 
-    insertBooks(recordData) {
-        const id = recordData[0];
-        const title = recordData[1];
-        const type = recordData[2];
-        const url = recordData[3];
+    getHighLightsbyBookId(bookId) {
+        return this.db.executeSql('select * from book_highlights where book_id = ?', [bookId]);
+    }
 
-        return this.db.executeSql('insert into books(id, title, type, url) values(?,?,?,?);', [id, title, type, url]);
+    deleteHighlightById(bookHighLight: HighLight) {
+        return this.db.executeSql('delete from book_highlights where id = ? and book_id = ?', [bookHighLight.id, bookHighLight.book_id]);
+    }
+
+    insertHighLight(bookHighLight: HighLight) {
+        return this.db.executeSql('insert into book_highlights(cfi_range, text_selected, book_id, style) ',
+            [bookHighLight.cfi_range, bookHighLight.text_selected, bookHighLight.book_id, bookHighLight.style]);
+    }
+
+    getNotesbyBookId(bookId) {
+        return this.db.executeSql('select * from book_notes where book_id = ?;', [bookId]);
+    }
+
+    deleteNoteById(bookNote: BookNote) {
+        return this.db.executeSql('delete from book_notes where id = ? and book_id = ?;', [bookNote.id, bookNote.book_id]);
+    }
+
+    insertBookNote(bookNote: BookNote) {
+        return this.db.executeSql('insert into book_notes(cfi_range, text_selected, book_id, note) values(?,?);',
+            [bookNote.cfi_range, bookNote.text_selected, bookNote.book_id, bookNote.note]);
     }
 }

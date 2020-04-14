@@ -7,6 +7,7 @@ import Book from 'epubjs/types/book';
 import {BookService} from './book/book.service';
 import { NavigationBar } from '@ionic-native/navigation-bar/ngx';
 import {CsvFileReaderService} from './infrastructure/csv/csv-file-reader.service';
+import {DatabaseService} from './database/database.service';
 
 @Component({
     selector: 'app-root',
@@ -26,7 +27,8 @@ export class AppComponent {
         private bookService: BookService,
         private menu: MenuController,
         private navigationBar: NavigationBar,
-        private csvReader: CsvFileReaderService
+        private csvReader: CsvFileReaderService,
+        private database: DatabaseService
     ) {
         this.initializeApp();
 

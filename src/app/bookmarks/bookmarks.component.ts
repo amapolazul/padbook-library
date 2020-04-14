@@ -1,11 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {BookmarksService} from './bookmarks.service';
-import {BookMark} from './bookmark';
 import {BookService} from '../book/book.service';
 import {Router} from '@angular/router';
 import {ToastController} from '@ionic/angular';
-import {DatabaseService} from '../database/database.service';
 import {BookEntity} from '../library/library.domain';
+import {BookMark} from '../database/models/library.models';
+import {DatabaseService} from '../database/database.service';
 
 @Component({
     selector: 'app-bookmarks',
@@ -17,10 +16,9 @@ export class BookmarksComponent implements OnInit {
     bookMarks: Array<BookMark> = [];
     bookMetadata: BookEntity;
 
-    constructor(private bookMarkService: BookmarksService,
-                private bookService: BookService,
+    constructor(private bookService: BookService,
                 private router: Router,
-                private database: DatabaseService,
+                private databaseService: DatabaseService,
                 public toastController: ToastController) {
 
         this.bookMetadata = this.bookService.getBookMetadata();
@@ -33,19 +31,17 @@ export class BookmarksComponent implements OnInit {
 
     initializeBookMarks() {
 
-        // this.database.getBookMarkList(this.bookMetadata.id).then(x => {
-        //
-        //     for (let i = 0; i < x.rows.length; i++) {
-        //         const item = x.rows.item(i);
-        //         const bookMark = new BookMark();
-        //         bookMark.pageIndex = item.page_index;
-        //         this.bookMarks.push(bookMark);
-        //     }
-        // });
+        this.databaseService.getBookMarkList(this.bookMetadata.id).then(x => {
 
-        const bookMark = new BookMark();
-        bookMark.pageIndex = 1;
-        this.bookMarks.push(bookMark);
+            for (let i = 0; i < x.rows.length; i++) {
+                const item = x.rows.item(i);
+                const bookMark = new BookMark();
+                bookMark.id = item.id;
+                bookMark.cfi = item.cfi;
+                bookMark.book_id = item.book_id;
+                this.bookMarks.push(bookMark);
+            }
+        });
     }
 
     goToPage(index) {
@@ -53,8 +49,8 @@ export class BookmarksComponent implements OnInit {
         this.router.navigate(['/home']);
     }
 
-    deleteBookMark(index) {
-        this.bookMarkService.removeBookMark(index).then(x => {
+    deleteBookMark(bookMark) {
+        this.databaseService.deleteBookMark(bookMark).then(x => {
             this.presentToast('Bookmark borrado correctamente');
             this.bookMarks = [];
             this.initializeBookMarks();
@@ -70,5 +66,4 @@ export class BookmarksComponent implements OnInit {
         });
         toast.present();
     }
-
 }

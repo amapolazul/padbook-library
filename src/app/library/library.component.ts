@@ -59,6 +59,7 @@ export class LibraryComponent implements OnInit {
 
         this.booksArray = parsedData.map(book => {
             let bookParsed = new BookEntity();
+            bookParsed.id = book[0];
             bookParsed.title = book[1];
             bookParsed.type = book[2];
             bookParsed.url = book[3];
@@ -66,7 +67,7 @@ export class LibraryComponent implements OnInit {
         });
 
         this.booksArray.forEach((book) => {
-            this.bookCategories.add(book.type)
+            this.bookCategories.add(book.type);
         });
 
         this.bookCategories.forEach( category => {

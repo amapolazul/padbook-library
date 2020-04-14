@@ -2,19 +2,16 @@ import {Component, OnInit} from '@angular/core';
 import Book from 'epubjs/types/book';
 import Rendition from 'epubjs/types/rendition';
 import {BookService} from '../book/book.service';
-import {BookmarksService} from '../bookmarks/bookmarks.service';
-import {BookMark} from '../bookmarks/bookmark';
 import Navigation from 'epubjs/types/navigation';
 import {MenuController, ModalController, Platform, PopoverController, ToastController} from '@ionic/angular';
 import {Router} from '@angular/router';
-import {CreateNotesModalPage} from './create-note-modal/create-notes-modal.page';
 import Contents from 'epubjs/types/contents';
 import Section from 'epubjs/types/section';
 import {FontSizePopPage} from './popovers/font-size/font-size-pop.page';
-import {StorageOptionsPopPage} from './popovers/storage-options/storage-options-pop.page';
-import {FormControl, FormGroup } from '@angular/forms';
+import {FormControl, FormGroup} from '@angular/forms';
 import {HighlightPopPage} from './popovers/highlight-popover/highlight-pop.page';
-
+import {DatabaseService} from '../database/database.service';
+import {BookMark} from '../database/models/library.models';
 
 
 @Component({
@@ -33,9 +30,10 @@ export class HomePage implements OnInit {
     showBookMarks: boolean;
     showNotes: boolean;
     bookName: string;
+    bookMarks: BookMark[];
 
     constructor(private bookService: BookService,
-                private bookMarkService: BookmarksService,
+                private databaseService: DatabaseService,
                 private modalController: ModalController,
                 public toastController: ToastController,
                 public popoverController: PopoverController,
@@ -56,7 +54,8 @@ export class HomePage implements OnInit {
             opts: new FormControl({value: 'bookmarks', disabled: false})
         });
 
-        this.bookName = this.bookService.getBookMetadata().title
+        this.bookName = this.bookService.getBookMetadata().title;
+        this.bookMarks = [];
     }
 
     ngOnInit() {
@@ -118,6 +117,8 @@ export class HomePage implements OnInit {
 
         this.rendition.themes.register('dark', 'assets/themes/themes.css');
         this.rendition.themes.register('light', 'assets/themes/themes.css');
+
+        this.initializeBookMarks();
     }
 
     searchBook(event) {
@@ -145,11 +146,18 @@ export class HomePage implements OnInit {
         return this.rendition.prev();
     }
 
+    goToPageFromBookMark(bookMark) {
+        this.bookService.goToPageHref(bookMark.cfiRange);
+    }
+
     bookMarkPage() {
         const bookMark = new BookMark();
-        bookMark.pageIndex = this.rendition.location.start.index;
-        this.bookMarkService.addBookMark(bookMark).then(x => {
+        bookMark.book_id = this.bookService.getBookMetadata().id;
+        bookMark.cfi = this.bookService.getRendition().location.start.cfi;
+        console.log('bookmark to insert', bookMark);
+        this.databaseService.insertBookmark(bookMark).then(x => {
             this.presentToast('Marcador guardado correctamente');
+            this.initializeBookMarks();
         }).catch(err => {
             this.presentToast(err);
             console.log(err);
@@ -206,5 +214,21 @@ export class HomePage implements OnInit {
             this.showBookMarks = true;
         }
         event.preventDefault();
+    }
+
+    initializeBookMarks() {
+        this.bookMarks = [];
+        this.databaseService.getBookMarkList(this.bookService.getBookMetadata().id).then(x => {
+
+            for (let i = 0; i < x.rows.length; i++) {
+                console.log('bookmarks', x.rows);
+                const item = x.rows.item(i);
+                const bookMark = new BookMark();
+                bookMark.id = item.id;
+                bookMark.cfi = item.cfi;
+                bookMark.book_id = item.book_id;
+                this.bookMarks.push(bookMark);
+            }
+        });
     }
 }

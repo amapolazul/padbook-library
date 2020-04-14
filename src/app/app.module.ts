@@ -8,7 +8,6 @@ import {StatusBar} from '@ionic-native/status-bar/ngx';
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
 import {BookService} from './book/book.service';
-import {BookmarksService} from './bookmarks/bookmarks.service';
 import {BookmarksComponent} from './bookmarks/bookmarks.component';
 import {DatabaseService} from './database/database.service';
 import {SQLite} from '@ionic-native/sqlite/ngx';
@@ -47,7 +46,6 @@ export class SentryErrorHandler implements ErrorHandler {
     imports: [BrowserModule, BrowserAnimationsModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, FormsModule, ReactiveFormsModule],
     providers: [
         BookService,
-        BookmarksService,
         DatabaseService,
         CsvFileReaderService,
         StatusBar,

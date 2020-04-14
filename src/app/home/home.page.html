@@ -5,29 +5,6 @@
         </ion-buttons>
         <ion-grid>
             <ion-row>
-                <!--<ion-col float-left text-center>
-                    <img src="assets/images/logo.svg" title="PadBook" alt="PadBook">
-                </ion-col>-->
-                <!--<ion-col>
-                    <ion-button routerLink="/bookmarks" float-right class="pb-button-bm">
-                        <ion-icon name="bookmark"></ion-icon>
-                    </ion-button>-->
-                <!--</ion-col>-->
-                <!--<ion-col>
-                    <ion-button (click)="openCustom()">
-                        <ion-icon name="search" ></ion-icon>
-                    </ion-button>
-                </ion-col>-->
-                <!--<ion-col>
-                    <ion-button (click)="presentStylesPopOver()">
-                        <ion-icon name="color-palette" ></ion-icon>
-                    </ion-button>
-                </ion-col>-->
-                <!--<ion-col>
-                    <ion-button (click)="presentStoragePopover()">
-                        <ion-icon name="grid"></ion-icon>
-                    </ion-button>
-                </ion-col>-->
                 <ion-col float-left size="5">
                     <div class="pb-title-text">{{bookName}}</div>
                 </ion-col>
@@ -55,7 +32,7 @@
                                 </ion-button>
                             </ion-col>
                             <ion-col>
-                                <ion-button routerLink="/bookmarks" class="pb-button">
+                                <ion-button (click)="bookMarkPage()" class="pb-button">
                                     <img src="assets/images/icon_bookmark.svg">
                                 </ion-button>
                             </ion-col>
@@ -106,8 +83,10 @@
             </ion-item-divider>
             <ion-menu-toggle auto-hide="false" *ngIf="showBookMarks">
                 <ion-list>
-                    <ion-item *ngFor="let result of bookmarks">
-                        <p (click)="goToPageFromCfi(result.cfi)">{{result.excerpt}}</p>
+                    <ion-item *ngFor="let bookMark of bookMarks; let i = index" style="color: white">
+                        <ion-label>
+                            <p (click)="goToPageFromBookMark(bookMark)">Bookmark #{{i}}</p>
+                        </ion-label>
                     </ion-item>
                 </ion-list>
             </ion-menu-toggle>
