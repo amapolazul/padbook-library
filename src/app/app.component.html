@@ -24,16 +24,18 @@
         </ion-toolbar>
       </ion-header>
       <ion-content>
-        <ion-list>
-          <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
-            <ion-item [routerDirection]="'root'">
-              <!--<ion-icon slot="start" [name]="p.icon"></ion-icon>-->
-              <ion-label>
-                <p (click)="goToPage(p.href)">{{p.title}}</p>
-              </ion-label>
-            </ion-item>
-          </ion-menu-toggle>
-        </ion-list>
+        <div class="pb-left">
+          <ion-list>
+            <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
+              <ion-item [routerDirection]="'root'">
+                <!--<ion-icon slot="start" [name]="p.icon"></ion-icon>-->
+                <ion-label>
+                  <p (click)="goToPage(p.href)">{{p.title}}</p>
+                </ion-label>
+              </ion-item>
+            </ion-menu-toggle>
+          </ion-list>
+        </div>
       </ion-content>
     </ion-menu>
     <ion-router-outlet main></ion-router-outlet>

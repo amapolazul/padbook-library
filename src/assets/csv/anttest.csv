@@ -5,7 +5,43 @@ id,titulo,tipo,url
 4,Números (Nm),PENTATEUCO,/assets/epub/004-numeros.epub
 5,Deuteronomio (Dt),PENTATEUCO,/assets/epub/005-deuteronomio.epub
 6,Josué (Jos),LIBROS HISTÓRICOS Y NARRATIVOS,/assets/epub/006-josue.epub
-7,Jueces (Jc),LIBROS HISTÓRICOS Y NARRATIVOS,/assets/epub/007-jueces.epub
-8,Rut (Rt),LIBROS HISTÓRICOS Y NARRATIVOS,/assets/epub/008-rut.epub
-9,Samuel (1 S),LIBROS HISTÓRICOS Y NARRATIVOS,/assets/epub/009-samuel.epub
-10,Samuel (2 S),LIBROS HISTÓRICOS Y NARRATIVOS,/assets/epub/010-samuel.epub
+7,Libro de los Jueces (Jc),LIBROS HISTÓRICOS Y NARRATIVOS,/assets/epub/007-libro-de-los-jueces.epub
+8,Libro de Rut (Rt),LIBROS HISTÓRICOS Y NARRATIVOS,/assets/epub/008-libro-de-rut.epub
+9,1 Samuel (1 S),LIBROS HISTÓRICOS Y NARRATIVOS,/assets/epub/009-1-samuel.epub
+10,2 Samuel (2 S),LIBROS HISTÓRICOS Y NARRATIVOS,/assets/epub/010-2-samuel.epub
+11,1 Reyes (1 R),LIBROS HISTÓRICOS Y NARRATIVOS,/assets/epub/011-1-reyes.epub
+12,2 Reyes (2 R),LIBROS HISTÓRICOS Y NARRATIVOS,/assets/epub/012-2-reyes.epub
+13,1 Crónicas (1 Cro),LIBROS HISTÓRICOS Y NARRATIVOS,/assets/epub/013-1-cronicas.epub
+14,2 Crónicas (2 Cro),LIBROS HISTÓRICOS Y NARRATIVOS,/assets/epub/014-2-cronicas.epub
+15,Esdras (Esd),LIBROS HISTÓRICOS Y NARRATIVOS,/assets/epub/015-esdras.epub
+16,Nehemías (Ne),LIBROS HISTÓRICOS Y NARRATIVOS,/assets/epub/016-nehemias.epub
+17,Tobías (Tb),LIBROS HISTÓRICOS Y NARRATIVOS,/assets/epub/017-tobias.epub
+18,Judit (Jdt),LIBROS HISTÓRICOS Y NARRATIVOS,/assets/epub/018-judit.epub
+19,Ester (Est),LIBROS HISTÓRICOS Y NARRATIVOS,/assets/epub/019-ester.epub
+20,1 Macabeos (1 M),LIBROS HISTÓRICOS Y NARRATIVOS,/assets/epub/020-1-macabeos.epub
+21,2 Macabeos (2 M),LIBROS HISTÓRICOS Y NARRATIVOS,/assets/epub/021-2-macabeos.epub
+22,Job (Jb),LIBROS POÉTICOS - SAPIENCIALES,/assets/epub/022-job.epub
+23,Salmos (Sal),LIBROS POÉTICOS - SAPIENCIALES,/assets/epub/023-salmos.epub
+24,Proverbios (Pr),LIBROS POÉTICOS - SAPIENCIALES,/assets/epub/024-proverbios.epub
+25,Eclesiastés (Qo),LIBROS POÉTICOS - SAPIENCIALES,/assets/epub/025-eclesiastes.epub
+26,Cantar de los cantares (Ct),LIBROS POÉTICOS - SAPIENCIALES,/assets/epub/026-cantar-de-los-cantares.epub
+27,Sabiduría (Sb),LIBROS POÉTICOS - SAPIENCIALES,/assets/epub/027-sabiduria.epub
+28,Eclesiástico (Eclo),LIBROS POÉTICOS - SAPIENCIALES,/assets/epub/028-eclesiastico.epub
+29,Isaías (Is),LIBROS PROFÉTICOS,/assets/epub/029-isaias.epub
+30,Jeremías (Jr),LIBROS PROFÉTICOS,/assets/epub/030-jeremias.epub
+31,Lamentaciones (Lm),LIBROS PROFÉTICOS,/assets/epub/031-lamentaciones.epub
+32,Baruc (Ba),LIBROS PROFÉTICOS,/assets/epub/032-baruc.epub
+33,Ezequiel (Ez),LIBROS PROFÉTICOS,/assets/epub/033-ezequiel.epub
+34,Daniel (Dn),LIBROS PROFÉTICOS,/assets/epub/034-daniel.epub
+35,Oseas (Os),LIBROS PROFÉTICOS,/assets/epub/035-oseas.epub
+36,Joel (Jl),LIBROS PROFÉTICOS,/assets/epub/036-joel.epub
+37,Amós (Am),LIBROS PROFÉTICOS,/assets/epub/037-amos.epub
+38,Abdías (Ab),LIBROS PROFÉTICOS,/assets/epub/038-abdias.epub
+39,Jonás (Jon),LIBROS PROFÉTICOS,/assets/epub/039-jonas.epub
+40,Miqueas (Mi),LIBROS PROFÉTICOS,/assets/epub/040-miqueas.epub
+41,Nahum (Na),LIBROS PROFÉTICOS,/assets/epub/041-nahum.epub
+42,Habacuc (Ha),LIBROS PROFÉTICOS,/assets/epub/042-habacuc.epub
+43,Sofonías (So),LIBROS PROFÉTICOS,/assets/epub/043-sofonias.epub
+44,Ageo (Ag),LIBROS PROFÉTICOS,/assets/epub/044-ageo.epub
+45,Zacarías (Za),LIBROS PROFÉTICOS,/assets/epub/045-zacarias.epub
+46,Malaquías (Ml),LIBROS PROFÉTICOS,/assets/epub/046-malaquias.epub

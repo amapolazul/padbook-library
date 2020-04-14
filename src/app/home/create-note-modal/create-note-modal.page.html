@@ -4,10 +4,13 @@
 <ion-content class="popover">
     <ion-grid>
         <ion-row>
-            <ion-col size="4">
-                Selección
+            <ion-col text-right>
+                <ion-button (click)="addNote()" class="pb-simple pb-border">Crear Nota</ion-button>
             </ion-col>
-            <ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col text-center>
+                <p>Selección</p>
                 <ion-item style="background: white">
                     {{textSelected}}
                 </ion-item>
@@ -15,10 +18,8 @@
         </ion-row>
         <hr>
         <ion-row>
-            <ion-col size="4">
-                Guardar como
-            </ion-col>
-            <ion-col>
+            <ion-col text-center>
+                <p>Nota</p>
                 <ion-item>
                     <ion-textarea [(ngModel)]="noteText"></ion-textarea>
                 </ion-item>
@@ -27,12 +28,7 @@
         <hr>
         <ion-row>
             <ion-col text-center>
-                <ion-button (click)="addNote()" class="pb-border">Crear nota</ion-button>
-            </ion-col>
-        </ion-row>
-        <ion-row>
-            <ion-col text-center>
-                <a (click)="dismissModal()"><img src="assets/images/icon_close.svg"></a>
+                <ion-button (click)="dismissModal()" class="pb-simple pb-border">Cerrar</ion-button>
             </ion-col>
         </ion-row>
     </ion-grid>
