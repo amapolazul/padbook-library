@@ -76,8 +76,9 @@
   --ion-color-light-tint: #f5f6f9;
 
   /** PadBook **/
-  --ion-color-pb-blue-1: #01184a;
-  --ion-color-pb-blue-2: #00ffff;
+  --ion-color-pb-blue-1: /*#01184a*/ #2c0d40;
+  --ion-color-pb-blue-2: /*#00ffff*/ #ffc105;
+  --ion-color-pb-background: #f2f2f2;
   --ion-color-pb-border: #cccccc;
 
 }

@@ -37,7 +37,7 @@
             </ion-col>
         </ion-row>
         <ion-row *ngFor="let bookArray of bookMapMatrix.get(category)">
-            <ion-col float-left *ngFor="let book of bookArray">
+            <ion-col float-left size="6" *ngFor="let book of bookArray">
                 <!--<div class="book-cover" (click)="openNewBook(book)">{{book.title}}</div>-->
                 <div (click)="openNewBook(book)" *ngIf="book.type == category">
                     <ion-grid class="pb-book-item">

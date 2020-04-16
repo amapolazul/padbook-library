@@ -4,9 +4,9 @@
 <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="32px" height="32px" viewBox="0 0 32 32" enable-background="new 0 0 32 32" xml:space="preserve">
 <g>
-	<rect x="0.504" y="0.504" fill="#8FFFFF" width="30.992" height="30.992"/>
+	<rect x="0.504" y="0.504" fill="#FFC105" width="30.992" height="30.992"/>
 	<g>
-		<path fill="#121E4A" d="M17.745,14.438h7.847v2.628h-7.847v8.113h-2.646v-8.113h-7.81v-2.628h7.81V6.287h2.646V14.438z"/>
+		<path fill="#2C0D40" d="M17.745,14.438h7.847v2.628h-7.847v8.113h-2.646v-8.113h-7.81v-2.628h7.81V6.287h2.646V14.438z"/>
 	</g>
 </g>
 </svg>
