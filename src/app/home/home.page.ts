@@ -118,7 +118,18 @@ export class HomePage implements OnInit {
         this.rendition.themes.register('dark', 'assets/themes/themes.css');
         this.rendition.themes.register('light', 'assets/themes/themes.css');
 
-        this.initializeBookMarks();
+        // Agrega diego
+        // this.rendition.themes.default({
+        //     h2: {
+        //         'font-size': '32px',
+        //         color: 'purple'
+        //     },
+        //     p: {
+        //         "margin": '10px'
+        //     }
+        // });
+
+        // this.initializeBookMarks();
     }
 
     searchBook(event) {
