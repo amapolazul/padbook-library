@@ -1,3 +1,29 @@
 id,titulo,tipo,url
-47,Génesis (Gén),PENTATEUCO,/assets/epub/001-genesis.epub
-48,Éxodo (Éx),PENTATEUCO,/assets/epub/002-exodo.epub
+47,Mateo (Mt),EVANGELIOS,/assets/epub/047-mateo.epub
+48,Marcos (Mc),EVANGELIOS,/assets/epub/048-marcos.epub
+49,Lucas (Lc),EVANGELIOS,/assets/epub/049-lucas.epub
+50,Juan (Jn),EVANGELIOS,/assets/epub/050-juan.epub
+51,Hechos de los Apóstoles (Hch),EVANGELIOS,/assets/epub/051-hechos-de-los-apostoles.epub
+52,Carta a los romanos (Rm),CARTAS DE PABLO,/assets/epub/052-carta-a-los-romanos.epub
+53,1 Carta a los corintios (1 Co),CARTAS DE PABLO,/assets/epub/053-1-carta-a-los-corintios.epub
+54,2 Carta a los corintios (2 Co),CARTAS DE PABLO,/assets/epub/054-2-carta-a-los-corintios.epub
+55,Carta a los gálatas (Ga),CARTAS DE PABLO,/assets/epub/055-carta-a-los-galatas.epub
+56,Carta a los efesios (Ef),CARTAS DE PABLO,/assets/epub/056-carta-a-los-efesios.epub
+57,Carta a los filipenses (Flp),CARTAS DE PABLO,/assets/epub/057-carta-a-los-filipenses.epub
+58,Carta a los colosenses (Col),CARTAS DE PABLO,/assets/epub/058-carta-a-los-colosenses.epub
+59,1 Carta a los tesalonicenses (1 Ts),CARTAS DE PABLO,/assets/epub/059-1-carta-a-los-tesalonicenses.epub
+60,2 Carta a los tesalonicenses (2 Ts),CARTAS DE PABLO,/assets/epub/060-2-carta-a-los-tesalonicenses.epub
+61,1 Carta a Timoteo (1 Tm),CARTAS DE PABLO,/assets/epub/061-1-carta-a-timoteo.epub
+62,2 Carta a Timoteo (2 Tm),CARTAS DE PABLO,/assets/epub/062-2-carta-a-timoteo.epub
+63,Carta a Tito (Tt),CARTAS DE PABLO,/assets/epub/063-carta-a-tito.epub
+64,Carta a Filemón (Flm),CARTAS DE PABLO,/assets/epub/064-carta-a-filemon.epub
+65,Carta a los hebreos (Hb),CARTAS DE PABLO,/assets/epub/065-carta-a-los-hebreos.epub
+66,Carta de Santiago (St),CARTAS UNIVERSALES,/assets/epub/066-carta-de-santiago.epub
+67,1 Carta de Pedro (1 P),CARTAS UNIVERSALES,/assets/epub/067-1-carta-de-pedro.epub
+68,2 Carta de Pedro (2 P),CARTAS UNIVERSALES,/assets/epub/068-2-carta-de-pedro.epub
+69,1 Carta de Juan (1 Jn),CARTAS UNIVERSALES,/assets/epub/069-1-carta-de-juan.epub
+70,2 Carta de Juan (2 Jn),CARTAS UNIVERSALES,/assets/epub/070-2-carta-de-juan.epub
+71,3 Carta de Juan (3 Jn),CARTAS UNIVERSALES,/assets/epub/071-3-carta-de-juan.epub
+72,Carta de Judas (Judas),CARTAS UNIVERSALES,/assets/epub/072-carta-de-judas.epub
+73,Apocalipsis (Ap),LIBROS PROFÉTICOS,/assets/epub/073-apocalipsis.epub
+74,Glosario bíblico,VOCABULARIO BÍBLICO,/assets/epub/074-glosario-biblico.epub

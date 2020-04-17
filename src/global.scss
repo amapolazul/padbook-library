@@ -12,6 +12,43 @@
 
 /** PadBook **/
 
+/* ---------- Fonts ---------- */
+
+@font-face {
+  font-family: 'Alegreya Sans ExtraBold';
+  font-style: normal;
+  font-weight: 800;
+  src: url(./assets/fonts/AlegreyaSans-ExtraBold.ttf);
+}
+
+@font-face {
+  font-family: 'Alegreya Sans';
+  font-style: italic;
+  font-weight: normal;
+  src: url(./assets/fonts/AlegreyaSans-Italic.ttf);
+}
+
+@font-face {
+  font-family: 'Alegreya Sans';
+  font-style: oblique;
+  font-weight: normal;
+  src: url(./assets/fonts/AlegreyaSans-Italic.ttf);
+}
+
+@font-face {
+  font-family: 'Alegreya Sans';
+  font-style: normal;
+  font-weight: normal;
+  src: url(./assets/fonts/AlegreyaSans-Regular.ttf);
+}
+
+@font-face {
+  font-family: 'Rounded Mplus 1c Bold';
+  font-style: normal;
+  font-weight: bold;
+  src: url(./assets/fonts/RoundedMplus1c-Bold.ttf);
+}
+
 /* ---------- Pages ---------- */
 
 /* App General */
@@ -50,7 +87,7 @@ ion-menu {
   }
   /* Content */
   ion-content {
-    --ion-background-color: rgba(1, 24, 74, 0.9);
+    --ion-background-color: /*rgba(1, 24, 74, 0.9)*/ rgba(44, 13, 64, 0.9);
   }
 }
 
@@ -170,6 +207,7 @@ ion-modal {
 
 /* List */
 ion-list {
+  /* PopOver */
   &.popover {
     padding: 20px;
     background-color: var(--ion-color-pb-blue-1);
@@ -211,6 +249,14 @@ app-slide {
     height: 100%;
     background: black;
     text-align: center;
+    &.special {
+      background: {
+        image: url(./assets/images/slide4_bg.png);
+        repeat: no-repeat;
+        position: center;
+        size: cover;
+      }
+    }
   }
 }
 
@@ -253,6 +299,7 @@ app-library {
   }
   /* Content */
   ion-content {
+    --background: var(--ion-color-pb-background);
     h1 {
       margin: 0;
       font-size: 14px;
@@ -262,14 +309,14 @@ app-library {
       width: 100%;
       height: 0;
       padding-top: 66.64%;
-      background-image: url("./assets/images/caratula.png");
+      background-image: url(./assets/images/caratula.png);
       background-repeat: no-repeat;
       background-size: contain;
     }
     .pb-book-item {
       border-top: 1px solid var(--ion-color-pb-border);
       .pb-book-title {
-        padding-top: 20px;
+        padding-top: 1.25em;
         font: {
           size: 12px;
           weight: bold;
@@ -280,9 +327,10 @@ app-library {
   }
 }
 
-/* App Home */
+/* App Home - App Bookmarks */
 
-app-home {
+app-home,
+app-bookmarks {
   /* Header */
   ion-header {
     ion-toolbar {
@@ -326,46 +374,57 @@ app-home {
   }
 }
 
-/* ---------- Pages Old ---------- */
-
 app-bookmarks {
-  ion-header {
-    ion-toolbar {
-      --ion-background-color: var(--ion-color-pb-blue-1);
-      ion-buttons {
-        ion-menu-button {
-          --color: var(--ion-color-pb-blue-2);
-        }
-      }
-      .pb-title {
-        padding: 10px;
-        .pb-text-1 {
-          font-size: 14px;
-          color: white;
-        }
-        .pb-text-2 {
-          padding-left: 5px;
-          font-size: 14px;
+  /* Content */
+  ion-content {
+    --background: var(--ion-color-pb-background);
+    .pb-top-bar {
+      background-color: var(--ion-color-pb-blue-1);
+      border-top: 5px solid white;
+      .pb-title-text {
+        min-width: 150px;
+        padding: 10px 30px;
+        font-size: 12px;
+        color: white;
+        letter-spacing: 1px;
+        display: inline-block;
+        &.active {
           color: var(--ion-color-pb-blue-2);
         }
       }
-      .pb-button-bm {
-        --background: var(--ion-color-pb-blue-1);
-        --color: var(--ion-color-pb-blue-2);
-      }
-      a {
-        font-size: 30px;
+      .pb-title-line {
         color: var(--ion-color-pb-blue-2);
       }
     }
-  }
-
-  ion-content {
-    a {
-      font-size: 40px;
+    .pb-results {
+      ion-list {
+        background: transparent;
+        ion-item {
+          --background: transparent;
+          .pb-text-1 {
+            font-weight: bold;
+            color: var(--ion-color-pb-blue-1);
+          }
+          .pb-text-2 {
+            font-weight: bold;
+            color: var(--ion-color-pb-blue-1);
+          }
+          .pb-text-3 {
+            color: var(--ion-color-pb-blue-1);
+          }
+          .pb-link {
+            padding: 5px 10px;
+            border: 1px solid var(--ion-color-pb-blue-1);
+            color: var(--ion-color-pb-blue-1);
+            text-decoration: none;
+          }
+        }
+      }
     }
   }
 }
+
+/* ---------- Pages Old ---------- */
 
 //.epub-container {
 //  width: 100% !important;

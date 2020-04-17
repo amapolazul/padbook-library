@@ -4,8 +4,8 @@
 <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="34px" height="34px" viewBox="0 0 34 34" enable-background="new 0 0 34 34" xml:space="preserve">
 <g>
-	<circle fill="#8FFFFF" cx="4" cy="17" r="3.604"/>
-	<circle fill="#8FFFFF" cx="17" cy="17" r="3.604"/>
-	<circle fill="#8FFFFF" cx="30" cy="17" r="3.604"/>
+	<circle fill="#FFC105" cx="4" cy="17" r="3.604"/>
+	<circle fill="#FFC105" cx="17" cy="17" r="3.604"/>
+	<circle fill="#FFC105" cx="30" cy="17" r="3.604"/>
 </g>
 </svg>
