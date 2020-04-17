@@ -18,54 +18,54 @@
     </ion-toolbar>
 </ion-header>-->
 
-<ion-header>
-    <ion-toolbar>
-        <ion-buttons slot="start">
-            <ion-menu-button></ion-menu-button>
-        </ion-buttons>
-        <ion-grid>
-            <ion-row>
-                <ion-col float-left size="5">
-                    <div class="pb-title-text">Nombre Libro</div>
-                </ion-col>
-                <ion-col float-right text-right>
-                    <ion-grid>
-                        <ion-row>
-                            <ion-col>
-                                <ion-button routerLink="/library" class="pb-button">
-                                    <img src="assets/images/icon_home.svg">
-                                </ion-button>
-                            </ion-col>
-                            <ion-col>
-                                <ion-button (click)="openCustom('search')" class="pb-button">
-                                    <img src="assets/images/icon_search.svg">
-                                </ion-button>
-                            </ion-col>
-                            <ion-col>
-                                <ion-button (click)="presentStylesPopOver()" class="pb-button">
-                                    <img src="assets/images/icon_letter.svg">
-                                </ion-button>
-                            </ion-col>
-                            <ion-col>
-                                <ion-button (click)="openCustom('storage-content')" class="pb-button">
-                                    <img src="assets/images/icon_more.svg">
-                                </ion-button>
-                            </ion-col>
-                            <ion-col>
-                                <ion-button (click)="bookMarkPage()" class="pb-button">
-                                    <img src="assets/images/icon_bookmark.svg">
-                                </ion-button>
-                            </ion-col>
-                        </ion-row>
-                    </ion-grid>
-                </ion-col>
-            </ion-row>
-        </ion-grid>
-        <ion-buttons slot="end">
+<!--<ion-header>-->
+    <!--<ion-toolbar>-->
+        <!--<ion-buttons slot="start">-->
+            <!--<ion-menu-button></ion-menu-button>-->
+        <!--</ion-buttons>-->
+        <!--<ion-grid>-->
+            <!--<ion-row>-->
+                <!--<ion-col float-left size="5">-->
+                    <!--<div class="pb-title-text">Nombre Libro</div>-->
+                <!--</ion-col>-->
+                <!--<ion-col float-right text-right>-->
+                    <!--<ion-grid>-->
+                        <!--<ion-row>-->
+                            <!--<ion-col>-->
+                                <!--<ion-button routerLink="/library" class="pb-button">-->
+                                    <!--<img src="assets/images/icon_home.svg">-->
+                                <!--</ion-button>-->
+                            <!--</ion-col>-->
+                            <!--<ion-col>-->
+                                <!--<ion-button (click)="openCustom('search')" class="pb-button">-->
+                                    <!--<img src="assets/images/icon_search.svg">-->
+                                <!--</ion-button>-->
+                            <!--</ion-col>-->
+                            <!--<ion-col>-->
+                                <!--<ion-button (click)="presentStylesPopOver()" class="pb-button">-->
+                                    <!--<img src="assets/images/icon_letter.svg">-->
+                                <!--</ion-button>-->
+                            <!--</ion-col>-->
+                            <!--<ion-col>-->
+                                <!--<ion-button (click)="openCustom('storage-content')" class="pb-button">-->
+                                    <!--<img src="assets/images/icon_more.svg">-->
+                                <!--</ion-button>-->
+                            <!--</ion-col>-->
+                            <!--<ion-col>-->
+                                <!--<ion-button (click)="bookMarkPage()" class="pb-button">-->
+                                    <!--<img src="assets/images/icon_bookmark.svg">-->
+                                <!--</ion-button>-->
+                            <!--</ion-col>-->
+                        <!--</ion-row>-->
+                    <!--</ion-grid>-->
+                <!--</ion-col>-->
+            <!--</ion-row>-->
+        <!--</ion-grid>-->
+        <!--<ion-buttons slot="end">-->
 
-        </ion-buttons>
-    </ion-toolbar>
-</ion-header>
+        <!--</ion-buttons>-->
+    <!--</ion-toolbar>-->
+<!--</ion-header>-->
 
 <ion-content>
 
@@ -93,23 +93,40 @@
     <ion-grid class="pb-top-bar">
         <ion-row>
             <ion-col text-center>
-                <a class="pb-title-text active">MARCADORES</a>
+                <a class="pb-title-text" [ngClass]="{'active' : showBookMarks}" (click)="changeOption()">MARCADORES</a>
                 <a class="pb-title-line">|</a>
-                <a class="pb-title-text">NOTAS</a>
+                <a class="pb-title-text" [ngClass]="{'active' : showNotes}"(click)="changeOption()">NOTAS</a>
             </ion-col>
         </ion-row>
     </ion-grid>
-    <ion-grid class="pb-results">
+    <ion-grid class="pb-results" *ngIf="showBookMarks">
         <ion-row>
             <ion-col>
                 <ion-list>
-                    <ion-item>
-                        <ion-label>
-                            <p><span class="pb-text-1">GENESIS (GEN)</span></p>
-                            <p><span class="pb-text-2">Capítulo 1</span></p>
-                            <p><span class="pb-text-3">Texto</span></p>
+                    <ion-item *ngFor="let bookmark of bookMarks; let i = index">
+                        <ion-label (click)="goToPage(bookmark.cfi)">
+                            <p><span class="pb-text-1">{{bookName}}</span></p>
+                            <p><span class="pb-text-2">P&aacute;gina {{bookmark.book_page}} </span></p>
+                            <p><span class="pb-text-3">Marcador #{{i}}</span></p>
                         </ion-label>
-                        <a href="" class="pb-link">BORRAR</a>
+                        <a (click)="deleteBookMark(bookmark)" class="pb-link">BORRAR</a>
+                    </ion-item>
+                </ion-list>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <ion-grid class="pb-results" *ngIf="showNotes">
+        <ion-row>
+            <ion-col>
+                <ion-list>
+                    <ion-item *ngFor="let note of bookNotes">
+                        <ion-label (click)="goToPage(note.cfi_range)">
+                            <p><span class="pb-text-1">{{bookName}}</span></p>
+                            <p><span class="pb-text-2">P&aacute;gina {{note.book_page}} </span></p>
+                            <p><span class="pb-text-3">{{note.text_selected}}</span></p>
+                            <p><span class="pb-text-3">{{note.note}}</span></p>
+                        </ion-label>
+                        <a (click)="deleteNote(note)" class="pb-link">BORRAR</a>
                     </ion-item>
                 </ion-list>
             </ion-col>

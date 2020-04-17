@@ -30,7 +30,7 @@
               <ion-item [routerDirection]="'root'">
                 <!--<ion-icon slot="start" [name]="p.icon"></ion-icon>-->
                 <ion-label>
-                  <p (click)="goToPage(p.href)">{{p.title}}</p>
+                  <p [innerHTML]="p.title" (click)="goToPage(p.href)"></p>
                 </ion-label>
               </ion-item>
             </ion-menu-toggle>

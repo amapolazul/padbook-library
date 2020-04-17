@@ -26,6 +26,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {FontSizePopPage} from './home/popovers/font-size/font-size-pop.page';
 import {StorageOptionsPopPage} from './home/popovers/storage-options/storage-options-pop.page';
 import {HighlightPopPage} from './home/popovers/highlight-popover/highlight-pop.page';
+import {ColorDictionaryService} from './commons/color-dictionary.service';
 
 Sentry.init({
     dsn: "https://e186c3712c204519a78cf3793a6df065@sentry.io/1384555"
@@ -51,6 +52,7 @@ export class SentryErrorHandler implements ErrorHandler {
         StatusBar,
         SplashScreen,
         SQLite,
+        ColorDictionaryService,
         { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
         { provide: ErrorHandler, useClass: SentryErrorHandler }
     ],

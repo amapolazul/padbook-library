@@ -14,8 +14,9 @@ export class BookService {
     rendtion: Rendition;
     bookMetadata: BookEntity;
     lastFontSize: number;
-
     isOpen: boolean;
+
+    bookMarkCfi: string;
 
     @Output() bookEmitter: EventEmitter<Book>;
 
@@ -53,7 +54,7 @@ export class BookService {
     }
 
     goToPageHref(href: string) {
-        this.rendtion.display(href);
+        return this.rendtion.display(href);
     }
 
     getBook() {
@@ -62,7 +63,7 @@ export class BookService {
 
     openNewBook(bookPath: string) {
         this.book = new ePub.Book(bookPath);
-        this.bookEmitter.emit(this.book)
+        this.bookEmitter.emit(this.book);
     }
 
     setIsOpen(value) {

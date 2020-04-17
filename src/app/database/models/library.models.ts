@@ -2,6 +2,7 @@ export class BookMark {
     id: number;
     book_id: number;
     cfi: string;
+    book_page: string;
 }
 
 export class BookNote {
@@ -10,6 +11,7 @@ export class BookNote {
     text_selected: string;
     book_id: number;
     note: string;
+    book_page: string;
 }
 
 export class HighLight {

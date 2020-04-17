@@ -1,10 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {BookService} from '../book/book.service';
 import {Router} from '@angular/router';
-import {ToastController} from '@ionic/angular';
+import {ModalController, ToastController} from '@ionic/angular';
 import {BookEntity} from '../library/library.domain';
-import {BookMark} from '../database/models/library.models';
+import {BookMark, BookNote} from '../database/models/library.models';
 import {DatabaseService} from '../database/database.service';
+import Rendition from 'epubjs/types/rendition';
 
 @Component({
     selector: 'app-bookmarks',
@@ -14,39 +15,50 @@ import {DatabaseService} from '../database/database.service';
 export class BookmarksComponent implements OnInit {
 
     bookMarks: Array<BookMark> = [];
+    bookNotes: Array<BookNote> = [];
     bookMetadata: BookEntity;
+    showBookMarks: boolean;
+    showNotes: boolean;
 
     constructor(private bookService: BookService,
                 private router: Router,
+                private modalController: ModalController,
                 private databaseService: DatabaseService,
                 public toastController: ToastController) {
 
         this.bookMetadata = this.bookService.getBookMetadata();
-
+        this.showBookMarks = true;
+        this.showNotes = false;
+        this.bookMarks = [];
     }
 
     ngOnInit() {
         this.initializeBookMarks();
+        this.initializeBookNotes();
     }
 
     initializeBookMarks() {
-
-        this.databaseService.getBookMarkList(this.bookMetadata.id).then(x => {
-
+        this.databaseService.getBookMarkList(this.bookService.getBookMetadata().id).then(x => {
             for (let i = 0; i < x.rows.length; i++) {
-                const item = x.rows.item(i);
-                const bookMark = new BookMark();
-                bookMark.id = item.id;
-                bookMark.cfi = item.cfi;
-                bookMark.book_id = item.book_id;
+                const bookMark = <BookMark> x.rows.item(i);
                 this.bookMarks.push(bookMark);
             }
         });
     }
 
-    goToPage(index) {
-        this.bookService.goToPage(index);
-        this.router.navigate(['/home']);
+    initializeBookNotes() {
+        this.databaseService.getNotesbyBookId(this.bookService.getBookMetadata().id).then(x => {
+            for (let i = 0; i < x.rows.length; i++) {
+                const bookNote = <BookNote> x.rows.item(i);
+                this.bookNotes.push(bookNote);
+            }
+        });
+    }
+
+    goToPage(cfi) {
+        const rend = <Rendition>this.bookService.getRendition();
+        rend.display(cfi);
+        this.modalController.dismiss();
     }
 
     deleteBookMark(bookMark) {
@@ -57,6 +69,28 @@ export class BookmarksComponent implements OnInit {
         }).catch(err => {
             this.presentToast(err);
         });
+    }
+
+    deleteNote(note) {
+        this.databaseService.deleteNoteById(note).then(x => {
+            this.bookService.getRendition().annotations.remove(note.cfi_range, 'highlight');
+            this.presentToast('Nota borrada correctamente');
+            this.bookNotes = [];
+            this.initializeBookNotes();
+        }).catch(err => {
+            this.presentToast(err);
+        });
+    }
+
+
+    changeOption() {
+        if (this.showBookMarks) {
+            this.showBookMarks = false;
+            this.showNotes = true;
+        } else {
+            this.showBookMarks = true;
+            this.showNotes = false;
+        }
     }
 
     async presentToast(message: string) {

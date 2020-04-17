@@ -45,14 +45,19 @@ export class AppComponent {
         this.book = book;
 
         this.bookName = this.bookService.getBookMetadata().title;
+        this.appPages = [];
 
         this.book.ready.then(x => {
             this.book.navigation.toc.forEach(t => {
-                this.appPages.push({title : t.label, href : t.href});
-                console.log({title : t.label, href : t.href});
-                t.subitems.forEach(si => {
-                    this.appPages.push({title : si.label, href : si.href});
-                });
+                let titleT = t.label;
+                if (t.subitems.length === 0) {
+                    this.appPages.push({title : t.label, href : t.href});
+                } else {
+                    t.subitems.forEach(si => {
+                        titleT = titleT  + '<br />' + si.label;
+                        this.appPages.push({title : titleT, href : si.href});
+                    });
+                }
             });
         });
     }

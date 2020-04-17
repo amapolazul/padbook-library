@@ -2,9 +2,12 @@ import {Component, Input, OnInit} from '@angular/core';
 import Book from 'epubjs/types/book';
 import Rendition from 'epubjs/types/rendition';
 import {BookService} from '../../../book/book.service';
-import {ModalController, PopoverController} from '@ionic/angular';
+import {ModalController, PopoverController, ToastController} from '@ionic/angular';
 import {FontSizePopPage} from '../font-size/font-size-pop.page';
 import {CreateNotesModalPage} from '../../create-note-modal/create-notes-modal.page';
+import {DatabaseService} from '../../../database/database.service';
+import {HighLight} from '../../../database/models/library.models';
+import {ColorDictionaryService} from '../../../commons/color-dictionary.service';
 
 
 @Component({
@@ -19,22 +22,20 @@ export class HighlightPopPage implements OnInit {
 
     book: Book;
     rendition: Rendition;
-    colorDictionary: Map<String, any>;
     isHighLight: boolean;
 
     constructor( private popoverController: PopoverController,
                  private modalController: ModalController,
-                 private bookService: BookService
+                 private bookService: BookService,
+                 private dataBaseService: DatabaseService,
+                 private toastController: ToastController,
+                 private colorDictionaryService: ColorDictionaryService
                  ) {
-        this.colorDictionary = new Map<string, any>();
 
         this.isHighLight = false;
 
         this.book = this.bookService.getBook();
         this.rendition = this.bookService.getRendition();
-        this.colorDictionary.set('yellow', {"fill": "#F7F587", "fill-opacity": "0.3", "mix-blend-mode": "multiply"} );
-        this.colorDictionary.set('blue', {"fill": "#00FFFF", "fill-opacity": "0.3", "mix-blend-mode": "multiply"} );
-        this.colorDictionary.set('red', {"fill": "#FF00FF", "fill-opacity": "0.3", "mix-blend-mode": "multiply"} );
     }
 
     ngOnInit() {
@@ -62,8 +63,26 @@ export class HighlightPopPage implements OnInit {
     }
 
     addNote(color) {
-        let colorSelected = this.colorDictionary.get(color);
-        this.rendition.annotations.add('highlight', this.cfirange, {}, (e) => {} , "hl", colorSelected);
-        this.popoverController.dismiss();
+        const colorSelected = this.colorDictionaryService.getColor(color);
+        const highLightTS = new HighLight();
+        highLightTS.style = color;
+        highLightTS.book_id = this.bookService.getBookMetadata().id;
+        highLightTS.cfi_range = this.cfirange;
+        highLightTS.text_selected = this.text;
+        this.dataBaseService.insertHighLight(highLightTS).then( result => {
+            this.rendition.annotations.add('highlight', this.cfirange, {}, (e) => {} , "hl", colorSelected);
+            this.popoverController.dismiss();
+        }, error => {
+            this.presentToast('Error subrayando texto: ' + error.toString());
+            this.popoverController.dismiss();
+        });
+    }
+
+    async presentToast(message) {
+        const toast = await this.toastController.create({
+            message: message,
+            duration: 2000
+        });
+        toast.present();
     }
 }
