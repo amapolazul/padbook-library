@@ -67,44 +67,6 @@
             </div>
         </ion-content>
     </ion-menu>
-    <ion-menu side="end" menuId="storage-content" type="push" contentId="storage-content" style="z-index: 1">
-        <ion-content>
-            <form (submit)="doSubmit($event)" [formGroup]="storageOptions">
-                <ion-radio-group value="biff" formControlName="opts">
-                    <ion-item>
-                        <ion-label><p>Bookmarks</p></ion-label>
-                        <ion-radio slot="start" value="bookmarks" (click)="doSubmit($event)"></ion-radio>
-                    </ion-item>
-                    <ion-item>
-                        <ion-label><p>Notes</p></ion-label>
-                        <ion-radio slot="start" value="notes" (click)="doSubmit($event)"></ion-radio>
-                    </ion-item>
-                </ion-radio-group>
-            </form>
-            <ion-item-divider color="secondary">
-                <ion-label>
-                    Resultados
-                </ion-label>
-            </ion-item-divider>
-            <ion-menu-toggle auto-hide="false" *ngIf="showBookMarks">
-                <ion-list>
-                    <ion-item *ngFor="let bookMark of bookMarks; let i = index" style="color: white">
-                        <ion-label>
-                            <p (click)="goToPageFromBookMark(bookMark)">Bookmark #{{i}}</p>
-                        </ion-label>
-                    </ion-item>
-                </ion-list>
-            </ion-menu-toggle>
-            <ion-menu-toggle auto-hide="false" *ngIf="showNotes">
-                <ion-list>
-                    <ion-item *ngFor="let result of notes" (click)="goToPageFromCfi(result.cfi)">
-                        <p>{{result.excerpt}}</p>
-                    </ion-item>
-                </ion-list>
-            </ion-menu-toggle>
-        </ion-content>
-    </ion-menu>
-    <ion-router-outlet id="storage-content"></ion-router-outlet>
     <ion-router-outlet id="main-search"></ion-router-outlet>
     <div id="area"></div>
     <!--<div id="touchlayer" style="width: 100%; height: 100%; position: absolute; z-index: 1" (click)="showHeader()"></div>-->
