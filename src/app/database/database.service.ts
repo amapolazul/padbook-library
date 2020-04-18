@@ -80,4 +80,8 @@ export class DatabaseService {
         return this.db.executeSql('insert into book_notes(cfi_range, text_selected, book_id, note, book_page) values(?,?,?,?,?);',
             [bookNote.cfi_range, bookNote.text_selected, bookNote.book_id, bookNote.note, bookNote.book_page]);
     }
+
+    updateNoteBook(bookNote: BookNote) {
+        return this.db.executeSql('UPDATE book_notes SET note = ? WHERE id = ?', [bookNote.note, bookNote.id]);
+    }
 }

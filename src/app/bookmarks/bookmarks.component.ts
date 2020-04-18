@@ -6,6 +6,8 @@ import {BookEntity} from '../library/library.domain';
 import {BookMark, BookNote} from '../database/models/library.models';
 import {DatabaseService} from '../database/database.service';
 import Rendition from 'epubjs/types/rendition';
+import {CreateNotesModalPage} from '../home/create-note-modal/create-notes-modal.page';
+import {EditNotesModalPage} from '../home/edit-note-modal/edit-notes-modal.page';
 
 @Component({
     selector: 'app-bookmarks',
@@ -80,6 +82,16 @@ export class BookmarksComponent implements OnInit {
         }).catch(err => {
             this.presentToast(err);
         });
+    }
+
+    async editNote(note) {
+        const modal = await this.modalController.create({
+            component: EditNotesModalPage,
+            componentProps: {
+                'bookNote': note
+            }
+        });
+        return modal.present();
     }
 
 

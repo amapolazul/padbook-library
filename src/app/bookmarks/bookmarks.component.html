@@ -126,6 +126,7 @@
                             <p><span class="pb-text-3">{{note.text_selected}}</span></p>
                             <p><span class="pb-text-3">{{note.note}}</span></p>
                         </ion-label>
+                        <a (click)="editNote(note)" class="pb-link">Editar</a>
                         <a (click)="deleteNote(note)" class="pb-link">BORRAR</a>
                     </ion-item>
                 </ion-list>

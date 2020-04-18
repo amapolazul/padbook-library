@@ -75,7 +75,7 @@ export class HomePage implements OnInit {
             thisRed.showHeader();
         });
 
-        this.rendition.on("selected", function(cfiRange) {
+        this.rendition.on('selected', function(cfiRange) {
 
             this.book.getRange(cfiRange).then(function (range) {
                 if (range) {
@@ -110,8 +110,14 @@ export class HomePage implements OnInit {
                         const bound = elBook.getBoundingClientRect();
                         const hr = (end.screenX - start.screenX) / bound.width;
                         const vr = Math.abs((end.screenY - start.screenY) / bound.height);
-                        if (hr > 0.25 && vr < 0.1) return thisRed.rendition.prev();
-                        if (hr < -0.25 && vr < 0.1) return thisRed.rendition.next();
+                        if (hr > 0.25 && vr < 0.1) {
+                            console.log(this.bookService.getRendition().location.start.displayed.page);
+                            return thisRed.rendition.prev();
+                        }
+                        if (hr < -0.25 && vr < 0.1)  {
+                            console.log(this.bookService.getRendition().location.start.displayed.page);
+                            return thisRed.rendition.next();
+                        }
                     }
                 });
         }});
@@ -157,10 +163,12 @@ export class HomePage implements OnInit {
     }
 
     nextPage() {
+        console.log(this.bookService.getRendition().location.start.displayed.page);
         return this.rendition.next();
     }
 
     prevPage() {
+        console.log(this.bookService.getRendition().location.start.displayed.page);
         return this.rendition.prev();
     }
 
