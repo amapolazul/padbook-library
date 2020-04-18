@@ -12,43 +12,6 @@
 
 /** PadBook **/
 
-/* ---------- Fonts ---------- */
-
-@font-face {
-  font-family: 'Alegreya Sans ExtraBold';
-  font-style: normal;
-  font-weight: 800;
-  src: url(./assets/fonts/AlegreyaSans-ExtraBold.ttf);
-}
-
-@font-face {
-  font-family: 'Alegreya Sans';
-  font-style: italic;
-  font-weight: normal;
-  src: url(./assets/fonts/AlegreyaSans-Italic.ttf);
-}
-
-@font-face {
-  font-family: 'Alegreya Sans';
-  font-style: oblique;
-  font-weight: normal;
-  src: url(./assets/fonts/AlegreyaSans-Italic.ttf);
-}
-
-@font-face {
-  font-family: 'Alegreya Sans';
-  font-style: normal;
-  font-weight: normal;
-  src: url(./assets/fonts/AlegreyaSans-Regular.ttf);
-}
-
-@font-face {
-  font-family: 'Rounded Mplus 1c Bold';
-  font-style: normal;
-  font-weight: bold;
-  src: url(./assets/fonts/RoundedMplus1c-Bold.ttf);
-}
-
 /* ---------- Pages ---------- */
 
 /* App General */
@@ -173,6 +136,17 @@ ion-content {
     border: 1px solid var(--ion-color-pb-blue-2);
     font-size: 14px;
     --color: white;
+    ion-item {
+      &.pb-tall {
+        min-height: 150px !important;
+        .item-inner {
+          border-width: 0 !important;
+        }
+      }
+      ion-textarea {
+        min-height: 150px;
+      }
+    }
     ion-button {
       margin: 0;
       --padding-start: 0;
@@ -195,6 +169,19 @@ ion-content {
     }
     hr {
       background-color: var(--ion-color-pb-blue-2);
+    }
+    &.pb-special {
+      --background: var(--ion-color-pb-background);
+      border: 0;
+      --color: inherit;
+      ion-button {
+        &.pb-simple {
+          color: var(--ion-color-pb-blue-1);
+        }
+        &.pb-border {
+          border: 1px solid var(--ion-color-pb-blue-1);
+        }
+      }
     }
   }
 }
@@ -237,6 +224,15 @@ ion-footer {
   }
 }
 
+/* Router Outlet */
+
+ion-router-outlet {
+  &.menu-content-push {
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+  }
+}
+
 /* App Slide */
 
 app-slide {
@@ -249,7 +245,7 @@ app-slide {
     height: 100%;
     background: black;
     text-align: center;
-    &.special {
+    &.pb-special {
       background: {
         image: url(./assets/images/slide4_bg.png);
         repeat: no-repeat;

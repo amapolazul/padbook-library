@@ -130,19 +130,10 @@ export class HomePage implements OnInit {
             console.log("not do anything");
         });
 
+        this.rendition.themes.register('assets/themes/default.css');
+
         this.rendition.themes.register('dark', 'assets/themes/themes.css');
         this.rendition.themes.register('light', 'assets/themes/themes.css');
-
-        // Agrega diego
-        // this.rendition.themes.default({
-        //     h2: {
-        //         'font-size': '32px',
-        //         color: 'purple'
-        //     },
-        //     p: {
-        //         "margin": '10px'
-        //     }
-        // });
 
         this.initializeHighLights();
         this.initializeNotes();

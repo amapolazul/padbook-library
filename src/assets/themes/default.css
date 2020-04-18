@@ -1,0 +1,64 @@
+/** PadBook **/
+
+/* ---------- Fonts ---------- */
+
+@font-face {
+	font-family: 'Alegreya Sans ExtraBold';
+	font-style: normal;
+	font-weight: 800;
+	src: url(../fonts/AlegreyaSans-ExtraBold.otf);
+}
+
+@font-face {
+	font-family: 'Alegreya Sans';
+	font-style: italic;
+	font-weight: normal;
+	src: url(../fonts/AlegreyaSans-Italic.otf);
+}
+
+@font-face {
+	font-family: 'Alegreya Sans';
+	font-style: oblique;
+	font-weight: normal;
+	src: url(../fonts/AlegreyaSans-Italic.otf);
+}
+
+@font-face {
+	font-family: 'Alegreya Sans';
+	font-style: normal;
+	font-weight: normal;
+	src: url(../fonts/AlegreyaSans-Regular.otf);
+}
+
+@font-face {
+	font-family: 'Rounded Mplus 1c Bold';
+	font-style: normal;
+	font-weight: bold;
+	src: url(../fonts/RoundedMplus1c-Bold.eot);
+	src: url(../fonts/RoundedMplus1c-Bold.eot?#iefix) format('embedded-opentype'),
+		url(../fonts/RoundedMplus1c-Bold.woff2) format('woff2'),
+		url(../fonts/RoundedMplus1c-Bold.ttf) format('truetype');
+}
+
+/* ---------- Default ---------- */
+
+body {
+	padding-left: 40px !important;
+	padding-right: 40px !important;
+}
+
+p.TITULOS-PARA-LIBROS {
+	font-family: 'Rounded Mplus 1c Bold', sans-serif;
+}
+
+p.CAPITULO-NEGRITA {
+	font-family: 'Alegreya Sans ExtraBold', sans-serif;
+}
+
+p.CAPITULO-ITALICA {
+	font-family: 'Alegreya Sans', sans-serif;
+}
+
+p.TEXTO-GENERAL {
+	font-family: 'Alegreya Sans', sans-serif;
+}
