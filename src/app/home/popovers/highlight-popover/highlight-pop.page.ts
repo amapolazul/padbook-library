@@ -69,6 +69,7 @@ export class HighlightPopPage implements OnInit {
         highLightTS.book_id = this.bookService.getBookMetadata().id;
         highLightTS.cfi_range = this.cfirange;
         highLightTS.text_selected = this.text;
+
         this.dataBaseService.insertHighLight(highLightTS).then( result => {
             this.rendition.annotations.add('highlight', this.cfirange, {}, (e) => {} , "hl", colorSelected);
             this.popoverController.dismiss();

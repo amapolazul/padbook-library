@@ -63,6 +63,10 @@ export class DatabaseService {
         return this.db.executeSql('delete from book_highlights where id = ? and book_id = ?', [bookHighLight.id, bookHighLight.book_id]);
     }
 
+    deleteHighLightByCfi(cfi) {
+        return this.db.executeSql('delete from book_highlights where cfi_range = ?', [cfi]);
+    }
+
     insertHighLight(bookHighLight: HighLight) {
         return this.db.executeSql('insert into book_highlights(cfi_range, text_selected, book_id, style) values(?,?,?,?) ',
             [bookHighLight.cfi_range, bookHighLight.text_selected, bookHighLight.book_id, bookHighLight.style]);

@@ -27,10 +27,10 @@
         <div class="pb-left">
           <ion-list>
             <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
-              <ion-item [routerDirection]="'root'">
+              <ion-item [routerDirection]="'root'" (click)="goToPage(p.href)">
                 <!--<ion-icon slot="start" [name]="p.icon"></ion-icon>-->
                 <ion-label>
-                  <p [innerHTML]="p.title" (click)="goToPage(p.href)"></p>
+                  <p [innerHTML]="p.title"></p>
                 </ion-label>
               </ion-item>
             </ion-menu-toggle>

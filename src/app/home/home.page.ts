@@ -14,6 +14,7 @@ import {DatabaseService} from '../database/database.service';
 import {BookMark, BookNote, HighLight} from '../database/models/library.models';
 import {ColorDictionaryService} from '../commons/color-dictionary.service';
 import {BookmarksComponent} from '../bookmarks/bookmarks.component';
+import {HighlightDeletePopPage} from './popovers/highlight-delete-popover/highlight-delete-pop.page';
 
 
 @Component({
@@ -71,7 +72,11 @@ export class HomePage implements OnInit {
 
         });
 
-        this.rendition.on('click', (event) => {
+        this.rendition.on('markClicked', (cfiRange, contents) => {
+            thisRed.presentHighlightDeletePopover(cfiRange);
+        });
+
+        this.rendition.on('click', (cfiRange, contents) => {
             thisRed.showHeader();
         });
 
@@ -83,7 +88,6 @@ export class HomePage implements OnInit {
                     const textNode = document.createTextNode(text);
                     thisRed.presentHighlightPopover(cfiRange, textNode.wholeText);
                 } else {
-                    console.log('highlight clicked', cfiRange);
                 }
             });
         });
@@ -215,6 +219,17 @@ export class HomePage implements OnInit {
             componentProps: {
                 cfirange: cfirange,
                 text: text
+            },
+            translucent: true
+        });
+        return await popover.present();
+    }
+
+    async presentHighlightDeletePopover(cfirange) {
+        const popover = await this.popoverController.create({
+            component: HighlightDeletePopPage,
+            componentProps: {
+                cfirange: cfirange,
             },
             translucent: true
         });
