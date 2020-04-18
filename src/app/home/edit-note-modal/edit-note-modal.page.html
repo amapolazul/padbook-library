@@ -2,15 +2,16 @@
     <a (click)="dismissModal()">Cerrar</a>
 </ion-header>-->
 <ion-content class="popover pb-special">
-    <ion-grid>
-        <ion-row>
-            <ion-col text-right>
-                <ion-button (click)="editNote()" class="pb-simple pb-border">Editar Nota</ion-button>
-            </ion-col>
-        </ion-row>
+    <ion-grid class="pb-top-bar">
         <ion-row>
             <ion-col text-center>
-                <p>Nota</p>
+                <p class="pb-title-line">Editar Nota</p>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <ion-grid>
+        <ion-row>
+            <ion-col text-center>
                 <ion-item>
                     <ion-textarea [(ngModel)]="noteText"></ion-textarea>
                 </ion-item>
@@ -19,6 +20,7 @@
         <hr>
         <ion-row>
             <ion-col text-center>
+                <ion-button (click)="editNote()" class="pb-simple pb-border">Guardar</ion-button>
                 <ion-button (click)="dismissModal()" class="pb-simple pb-border">Cerrar</ion-button>
             </ion-col>
         </ion-row>

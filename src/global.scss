@@ -144,7 +144,7 @@ ion-content {
         }
       }
       ion-textarea {
-        min-height: 150px;
+        min-height: 300px;
       }
     }
     ion-button {
@@ -174,9 +174,13 @@ ion-content {
       --background: var(--ion-color-pb-background);
       border: 0;
       --color: inherit;
+      hr {
+        background-color: var(--ion-color-pb-border);
+      }
       ion-button {
         &.pb-simple {
-          color: var(--ion-color-pb-blue-1);
+          color: var(--ion-color-pb-blue-2);
+          margin: 10px 30px;
         }
         &.pb-border {
           border: 1px solid var(--ion-color-pb-blue-1);
@@ -332,6 +336,14 @@ app-library {
 
 /* App Home - App Bookmarks */
 
+app-home {
+  #area {
+    .epub-container {
+      margin: 10px 2.5%;
+    }
+  }
+}
+
 app-home,
 app-bookmarks {
   /* Header */
@@ -377,6 +389,7 @@ app-bookmarks {
   }
 }
 
+app-notes-modal,
 app-bookmarks {
   /* Content */
   ion-content {
@@ -416,10 +429,15 @@ app-bookmarks {
             color: var(--ion-color-pb-blue-1);
           }
           .pb-link {
+            margin-right: 5px;
             padding: 5px 10px;
             border: 1px solid var(--ion-color-pb-blue-1);
             color: var(--ion-color-pb-blue-1);
             text-decoration: none;
+
+            ion-icon {
+              font-size: 35px;
+            }
           }
         }
       }

@@ -69,7 +69,7 @@ export class CreateNotesModalPage implements OnInit {
                 {},
                 (e) => {} ,
                 "hl",
-                {"fill": "yellow", "fill-opacity": "0.3", "mix-blend-mode": "multiply"});
+                {"fill": "#00FF00", "fill-opacity": "0.3", "mix-blend-mode": "multiply"});
             this.presentToast('Nota creada correctamente');
             this.dismissModal();
         }).catch( error => {

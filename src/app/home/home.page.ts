@@ -46,7 +46,7 @@ export class HomePage implements OnInit {
                 private router: Router) {
 
         this.book = this.bookService.getBook();
-        this.rendition = this.book.renderTo('area', {spread: 'none'});
+        this.rendition = this.book.renderTo('area', {spread: 'none', width: '95%' });
         this.rendition.display();
         this.bookService.setRendtion(this.rendition);
         this.showElement = false;
@@ -130,7 +130,7 @@ export class HomePage implements OnInit {
             console.log("not do anything");
         });
 
-        this.rendition.themes.register('assets/themes/default.css');
+        this.rendition.themes.default('assets/themes/default.css');
 
         this.rendition.themes.register('dark', 'assets/themes/themes.css');
         this.rendition.themes.register('light', 'assets/themes/themes.css');
@@ -268,7 +268,7 @@ export class HomePage implements OnInit {
         this.databaseService.getNotesbyBookId(this.bookService.getBookMetadata().id).then(notesRecords => {
             for (let i = 0; i < notesRecords.rows.length; i++) {
                 const item = <BookNote> notesRecords.rows.item(i);
-                this.rendition.annotations.add('highlight', item.cfi_range, {}, (e) => {} , "hl", {"fill": "yellow", "fill-opacity": "0.3", "mix-blend-mode": "multiply"});
+                this.rendition.annotations.add('highlight', item.cfi_range, {}, (e) => {} , "hl", {"fill": "#00FF00", "fill-opacity": "0.3", "mix-blend-mode": "multiply"});
             }
         });
     }
