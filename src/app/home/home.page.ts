@@ -132,6 +132,11 @@ export class HomePage implements OnInit {
 
         this.rendition.themes.default('assets/themes/default.css');
 
+
+        this.bookService.setLastFontSizeSize(120);
+        this.rendition.themes.fontSize('120%');
+
+
         this.rendition.themes.register('dark', 'assets/themes/themes.css');
         this.rendition.themes.register('light', 'assets/themes/themes.css');
 
@@ -141,7 +146,7 @@ export class HomePage implements OnInit {
 
     searchBook(event) {
         const searchTerm = event.detail.value;
-        if(searchTerm && searchTerm !== '') {
+        if(searchTerm && searchTerm !== '' && searchTerm.length > 2) {
             this.book.spine.each((item: Section) => {
                 this.searchResults = item.find(searchTerm);
                 console.log(this.searchResults);
