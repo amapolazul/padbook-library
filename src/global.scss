@@ -87,7 +87,7 @@ ion-menu {
   }
   /* Content */
   ion-content {
-    --ion-background-color: /*rgba(1, 24, 74, 0.9)*/ rgba(44, 13, 64, 0.9);
+    --ion-background-color: var(--ion-color-pb-blue-1-opacity);
   }
 }
 
@@ -322,6 +322,13 @@ app-library {
           weight: bold;
         }
         color: var(--ion-color-pb-blue-1);
+      }
+    }
+    /* Menu */
+    ion-menu {
+      /* Content */
+      ion-content {
+        --background: var(--ion-color-pb-blue-1-opacity);
       }
     }
   }
